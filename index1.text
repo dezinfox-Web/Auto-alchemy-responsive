@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Alchemy Co. | Premium Car Detailing & Painting</title>
+    <meta name="description" content="Experience premium car detailing, ceramic coating, and professional painting services at Auto Alchemy Co. Perfection for your passion.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="index.css">
+    
+    <!-- Icons (Lucide) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="glass sticky-header">
+        <div class="container flex justify-between items-center">
+            <div class="logo flex items-center gap-2">
+                <div class="logo-icon font-outfit">A</div>
+                <div class="logo-text">
+                    <span class="font-outfit">AUTO</span>
+                    <span class="font-outfit text-gold">ALCHEMY CO.</span>
+                </div>
+            </div>
+            
+            <nav class="desktop-nav">
+                <ul class="flex gap-8 items-center list-none">
+                    <li><a href="#home" class="nav-link active">HOME</a></li>
+                    <li><a href="#services" class="nav-link">SERVICES</a></li>
+                    <li><a href="#about" class="nav-link">WHY US</a></li>
+                    <li><a href="#gallery" class="nav-link">GALLERY</a></li>
+                    <li><a href="#testimonials" class="nav-link">TESTIMONIALS</a></li>
+                    <li><a href="#contact" class="nav-link">CONTACT</a></li>
+                </ul>
+            </nav>
+            
+            <a href="#book" class="btn btn-primary">Book Appointment</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="container grid hero-grid items-center">
+                <div class="hero-content">
+                    <h1 class="hero-title">WE PAINT <span class="text-gold">PERFECTION.</span> YOU DRIVE <span class="text-gold">PASSION.</span></h1>
+                    <p class="hero-subtitle">Premium painting & detailing services for all car brands.</p>
+                    <div class="hero-btns flex gap-4">
+                        <a href="#book" class="btn btn-primary">Book Appointment</a>
+                        <a href="#services" class="btn btn-outline">View Services</a>
+                    </div>
+                </div>
+                
+                <div class="hero-image-container">
+                    <div class="glow-ring"></div>
+                    <img src="hero_car.png" alt="Premium Car" class="hero-car-img">
+                    <div class="scroll-explore">
+                        <span>SCROLL TO EXPLORE</span>
+                        <div class="scroll-line"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Hero Badges -->
+            <div class="container hero-badges flex justify-between">
+                <div class="badge-item flex items-center gap-2">
+                    <i data-lucide="shield-check" class="text-gold"></i>
+                    <span>Premium Quality</span>
+                </div>
+                <div class="badge-item flex items-center gap-2">
+                    <i data-lucide="users" class="text-gold"></i>
+                    <span>Expert Technicians</span>
+                </div>
+                <div class="badge-item flex items-center gap-2">
+                    <i data-lucide="clock" class="text-gold"></i>
+                    <span>Timely Delivery</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="section-padding">
+            <div class="container">
+                <div class="section-header flex justify-between items-end">
+                    <div>
+                        <span class="section-tag">OUR SERVICES</span>
+                        <h2 class="section-title">Complete Care.<br>Unmatched <span>Quality.</span></h2>
+                    </div>
+                    <p class="section-desc max-w-md text-secondary">From quick touch-ups to full-body transformations — we do it all.</p>
+                </div>
+                
+                <div class="services-grid grid">
+                    <!-- Express Detail -->
+                    <div class="service-card glass">
+                        <i data-lucide="sparkles" class="service-icon"></i>
+                        <h3 class="service-title">Express Detail</h3>
+                        <p class="service-desc">Quick & effective cleaning for a showroom shine.</p>
+                        <div class="service-footer">
+                            <span>30 - 45 MIN</span>
+                            <i data-lucide="arrow-right"></i>
+                        </div>
+                    </div>
+                    <!-- Full Detail -->
+                    <div class="service-card glass">
+                        <i data-lucide="layers" class="service-icon"></i>
+                        <h3 class="service-title">Full Detail</h3>
+                        <p class="service-desc">Deep cleaning inside out, perfect in every inch.</p>
+                        <div class="service-footer">
+                            <span>3 - 5 HRS</span>
+                            <i data-lucide="arrow-right"></i>
+                        </div>
+                    </div>
+                    <!-- Decontamination -->
+                    <div class="service-card glass">
+                        <i data-lucide="droplets" class="service-icon"></i>
+                        <h3 class="service-title">Decontamination</h3>
+                        <p class="service-desc">Remove harmful particles for a smooth surface.</p>
+                        <div class="service-footer">
+                            <span>2 - 4 HRS</span>
+                            <i data-lucide="arrow-right"></i>
+                        </div>
+                    </div>
+                    <!-- Ceramic Coating -->
+                    <div class="service-card glass">
+                        <i data-lucide="shield" class="service-icon"></i>
+                        <h3 class="service-title">Ceramic Coating</h3>
+                        <p class="service-desc">Long-lasting protection with brilliant shine.</p>
+                        <div class="service-footer">
+                            <span>1 - 2 DAYS</span>
+                            <i data-lucide="arrow-right"></i>
+                        </div>
+                    </div>
+                    <!-- Paint Correction -->
+                    <div class="service-card glass">
+                        <i data-lucide="wand-2" class="service-icon"></i>
+                        <h3 class="service-title">Paint Correction</h3>
+                        <p class="service-desc">Remove swirls & scratches restore like paint.</p>
+                        <div class="service-footer">
+                            <span>1 - 2 DAYS</span>
+                            <i data-lucide="arrow-right"></i>
+                        </div>
+                    </div>
+                    <!-- PPF Wrap -->
+                    <div class="service-card glass">
+                        <i data-lucide="package" class="service-icon"></i>
+                        <h3 class="service-title">PPF Wrap</h3>
+                        <p class="service-desc">Protect your car with invisible armor.</p>
+                        <div class="service-footer">
+                            <span>2 - 3 DAYS</span>
+                            <i data-lucide="arrow-right"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Process Section -->
+        <section id="process" class="section-padding">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">OUR PROCESS</span>
+                    <h2 class="section-title">From Desire<br>To <span>Drive.</span></h2>
+                </div>
+                
+                <div class="process-grid grid">
+                    <div class="process-item">
+                        <span class="process-num">01</span>
+                        <h4 class="process-title">BOOK ONLINE</h4>
+                        <p class="process-desc text-secondary">Choose your service and pick a time.</p>
+                    </div>
+                    <div class="process-item">
+                        <span class="process-num">02</span>
+                        <h4 class="process-title">WE WORK</h4>
+                        <p class="process-desc text-secondary">Our expert team gets to work.</p>
+                    </div>
+                    <div class="process-item">
+                        <span class="process-num">03</span>
+                        <h4 class="process-title">QUALITY CHECK</h4>
+                        <p class="process-desc text-secondary">Every inch inspected for perfection.</p>
+                    </div>
+                    <div class="process-item">
+                        <span class="process-num">04</span>
+                        <h4 class="process-title">ENJOY THE DRIVE</h4>
+                        <p class="process-desc text-secondary">Your car, transformed and ready to shine.</p>
+                    </div>
+                </div>
+                
+                <!-- Process Showcase Card -->
+                <div class="process-card glass flex items-center gap-8 mt-20">
+                    <div class="process-card-content flex-1">
+                        <span class="text-gold font-bold">01 - EASY & FAST</span>
+                        <h3 class="text-3xl font-bold mt-2">Book Online</h3>
+                        <p class="text-secondary mt-4">Your perfect car care experience is just a few clicks away.</p>
+                        <a href="#book" class="btn btn-primary mt-8">Book Now</a>
+                    </div>
+                    <div class="process-card-image flex-1">
+                        <img src="car yellow.png" alt="Process" class="rounded-xl w-full">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trust Section -->
+        <section class="section-padding border-t border-glass-border">
+            <div class="container flex justify-between items-center flex-wrap gap-12 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/3M_logo.svg/2560px-3M_logo.svg.png" alt="3M" class="h-6">
+                <img src="https://seeklogo.com/images/S/sonax-logo-97599D95E3-seeklogo.com.png" alt="Sonax" class="h-10">
+                <span class="text-2xl font-bold text-secondary">RUPES</span>
+                <span class="text-2xl font-bold text-secondary">CARPRO</span>
+                <span class="text-2xl font-bold text-secondary">GYEON</span>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="section-padding">
+            <div class="container">
+                <div class="section-header flex justify-between items-end">
+                    <div>
+                        <span class="section-tag">CLIENT EXPERIENCES</span>
+                        <h2 class="section-title">What Our <span>Clients Say</span></h2>
+                    </div>
+                </div>
+                
+                <div class="testimonials-grid grid gap-8">
+                    <div class="testimonial-card glass p-8 rounded-2xl">
+                        <div class="flex gap-1 text-gold mb-4">
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        </div>
+                        <p class="text-sm text-secondary italic mb-8">"Absolutely love my car's new look! The attention to detail is next level."</p>
+                        <div class="testimonial-footer">
+                            <h5 class="font-bold">Raghav Nair</h5>
+                            <span class="text-xs text-gold">Porsche 911</span>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card glass p-8 rounded-2xl">
+                        <div class="flex gap-1 text-gold mb-4">
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        </div>
+                        <p class="text-sm text-secondary italic mb-8">"Their ceramic coating made my car look better than new. Highly recommended!"</p>
+                        <div class="testimonial-footer">
+                            <h5 class="font-bold">Priya S.</h5>
+                            <span class="text-xs text-gold">Range Rover Autobiography</span>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card glass p-8 rounded-2xl">
+                        <div class="flex gap-1 text-gold mb-4">
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        </div>
+                        <p class="text-sm text-secondary italic mb-8">"The best detailing studio in the city. Period."</p>
+                        <div class="testimonial-footer">
+                            <h5 class="font-bold">Vikram K.</h5>
+                            <span class="text-xs text-gold">BMW M4</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Bar -->
+        <section class="stats-bar glass py-12">
+            <div class="container flex justify-between">
+                <div class="stat-item flex items-center gap-4">
+                    <i data-lucide="car-front" class="text-gold w-10 h-10"></i>
+                    <div>
+                        <div class="text-3xl font-bold">500+</div>
+                        <div class="text-xs text-secondary uppercase tracking-widest">Cars Transformed</div>
+                    </div>
+                </div>
+                <div class="stat-item flex items-center gap-4">
+                    <i data-lucide="award" class="text-gold w-10 h-10"></i>
+                    <div>
+                        <div class="text-3xl font-bold">100%</div>
+                        <div class="text-xs text-secondary uppercase tracking-widest">Satisfaction Rate</div>
+                    </div>
+                </div>
+                <div class="stat-item flex items-center gap-4">
+                    <i data-lucide="history" class="text-gold w-10 h-10"></i>
+                    <div>
+                        <div class="text-3xl font-bold">15+</div>
+                        <div class="text-xs text-secondary uppercase tracking-widest">Years Experience</div>
+                    </div>
+                </div>
+                <div class="stat-item flex items-center gap-4">
+                    <i data-lucide="sparkles" class="text-gold w-10 h-10"></i>
+                    <div>
+                        <div class="text-3xl font-bold">7</div>
+                        <div class="text-xs text-secondary uppercase tracking-widest">Premium Services</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Booking Section -->
+        <section id="book" class="section-padding">
+            <div class="container grid booking-grid gap-12 items-center">
+                <div class="booking-info">
+                    <span class="text-gold font-bold uppercase tracking-widest text-xs">GET STARTED</span>
+                    <h2 class="section-title">BOOK YOUR <span>SESSION</span></h2>
+                    <p class="text-secondary mb-12">Fill out the form and our team will get in touch with you.</p>
+                    
+                    <div class="contact-details grid gap-8">
+                        <div class="contact-item flex gap-4">
+                            <i data-lucide="map-pin" class="text-gold"></i>
+                            <div>
+                                <h5 class="font-bold">VISIT OUR STUDIO</h5>
+                                <p class="text-sm text-secondary">123 Auto Drive, Coimbatore</p>
+                            </div>
+                        </div>
+                        <div class="contact-item flex gap-4">
+                            <i data-lucide="calendar" class="text-gold"></i>
+                            <div>
+                                <h5 class="font-bold">WORKING HOURS</h5>
+                                <p class="text-sm text-secondary">Mon - Sat: 9:00 AM - 7:00 PM</p>
+                            </div>
+                        </div>
+                        <div class="contact-item flex gap-4">
+                            <i data-lucide="phone" class="text-gold"></i>
+                            <div>
+                                <h5 class="font-bold">LET'S TALK</h5>
+                                <p class="text-sm text-secondary">+91 98765 43210</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="booking-form glass p-8 rounded-2xl relative">
+                    <form class="grid gap-4">
+                        <div class="grid grid-cols-2 gap-4">
+                            <input type="text" placeholder="Full Name" class="form-input">
+                            <input type="email" placeholder="Email Address" class="form-input">
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <input type="tel" placeholder="Phone Number" class="form-input">
+                            <input type="text" placeholder="Car Brand" class="form-input">
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <select class="form-input">
+                                <option>Select Service</option>
+                                <option>Express Detail</option>
+                                <option>Full Detail</option>
+                            </select>
+                            <input type="date" class="form-input">
+                        </div>
+                        <select class="form-input">
+                            <option>Preferred Time</option>
+                            <option>Morning (9 AM - 12 PM)</option>
+                            <option>Afternoon (1 PM - 4 PM)</option>
+                        </select>
+                        <textarea placeholder="Additional Notes" class="form-input h-32"></textarea>
+                        <button type="submit" class="btn btn-primary w-full justify-center py-4">CONFIRM BOOKING <i data-lucide="arrow-right"></i></button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="glass py-20 border-t border-glass-border">
+        <div class="container grid footer-grid gap-12">
+            <div class="footer-brand">
+                <div class="logo flex items-center gap-2 mb-6">
+                    <div class="logo-icon font-outfit">A</div>
+                    <div class="logo-text">
+                        <span class="font-outfit">AUTO</span>
+                        <span class="font-outfit text-gold">ALCHEMY CO.</span>
+                    </div>
+                </div>
+                <p class="text-secondary text-sm max-w-xs">Luxury car care isn't a cost, it's how the world sees you. We make every car a masterpiece.</p>
+                <div class="social-links flex gap-4 mt-8">
+                    <a href="#" class="social-icon"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                    <a href="#" class="social-icon"><i data-lucide="facebook" class="w-5 h-5"></i></a>
+                    <a href="#" class="social-icon"><i data-lucide="youtube" class="w-5 h-5"></i></a>
+                    <a href="#" class="social-icon"><i data-lucide="twitter" class="w-5 h-5"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-links">
+                <h5 class="font-bold mb-6 uppercase tracking-wider text-sm">Quick Links</h5>
+                <ul class="grid gap-3 list-none">
+                    <li><a href="#" class="footer-link">Home</a></li>
+                    <li><a href="#" class="footer-link">Services</a></li>
+                    <li><a href="#" class="footer-link">Why Us</a></li>
+                    <li><a href="#" class="footer-link">Gallery</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h5 class="font-bold mb-6 uppercase tracking-wider text-sm">Services</h5>
+                <ul class="grid gap-3 list-none">
+                    <li><a href="#" class="footer-link">Express Detail</a></li>
+                    <li><a href="#" class="footer-link">PPF Wrap</a></li>
+                    <li><a href="#" class="footer-link">Ceramic Coating</a></li>
+                    <li><a href="#" class="footer-link">Paint Correction</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-contact">
+                <h5 class="font-bold mb-6 uppercase tracking-wider text-sm">Contact</h5>
+                <ul class="grid gap-3 list-none">
+                    <li class="flex gap-2 text-sm text-secondary"><i data-lucide="phone" class="w-4 h-4 text-gold"></i> +91 98765 43210</li>
+                    <li class="flex gap-2 text-sm text-secondary"><i data-lucide="mail" class="w-4 h-4 text-gold"></i> info@autoalchemy.com</li>
+                    <li class="flex gap-2 text-sm text-secondary"><i data-lucide="map-pin" class="w-4 h-4 text-gold"></i> 123 Auto Drive, Coimbatore</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="container border-t border-glass-border mt-20 pt-8 flex justify-between text-xs text-secondary">
+            <p>&copy; 2024 Auto Alchemy Co. All Rights Reserved.</p>
+            <div class="flex gap-8">
+                <a href="#" class="hover:text-gold">Privacy Policy</a>
+                <a href="#" class="hover:text-gold">Terms & Conditions</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
