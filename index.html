@@ -518,6 +518,11 @@
             transform: rotateY(180deg);
         }
 
+        /* When flipped, disable pointer events on front so back button is clickable */
+        .service-card.flipped .card-front {
+            pointer-events: none;
+        }
+
         /* ── SHARED FACE STYLES ── */
         .card-front,
         .card-back {
@@ -1558,7 +1563,6 @@
             transform: scale(1.03);
         }
 
-        /* ─── BOOK THIS PACKAGE BUTTON ─── */
         .btn-service-book {
             display: inline-flex;
             align-items: center;
@@ -1569,20 +1573,25 @@
             border-radius: 50px;
             border: none;
             cursor: pointer;
-            background: #E6C27A;
+            background: #D4AF37;
             color: #fff;
             font-size: 0.82rem;
             font-weight: 800;
             letter-spacing: 0.08em;
             text-transform: uppercase;
-            transition: transform 0.2s ease, opacity 0.3s ease;
+            transition: all 0.3s ease;
             text-decoration: none;
+            position: relative;
+            z-index: 10;
+            pointer-events: auto;
         }
 
         .btn-service-book:hover {
-            transform: scale(1.02);
-            opacity: 0.95;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+            background: #F5D061;
         }
+
 
         .gallery-section {
             padding: 40px 7% 10px;
@@ -2886,11 +2895,6 @@
                 height: 100px;
             }
 
-            .btn-service-book {
-                font-size: 0.8rem;
-                padding: 13px 16px;
-                margin-top: 16px;
-            }
 
             .service-bottom-car-container {
                 margin-top: 60px;
@@ -4271,10 +4275,7 @@
                                 <li>Window cleaning inside & out</li>
                             </ul>
                         </div>
-
-                        <a href="#booking" class="btn-service-book">
-                            Book This Package
-                        </a>
+                        <a href="#book" class="btn-service-book" data-package="express">Book This Package</a>
 
                     </div>
 
@@ -4322,10 +4323,7 @@
                                 <li>Leather conditioning treatment</li>
                             </ul>
                         </div>
-
-                        <a href="#booking" class="btn-service-book">
-                            Book This Package
-                        </a>
+                        <a href="#book" class="btn-service-book" data-package="full">Book This Package</a>
 
                     </div>
 
@@ -4373,10 +4371,7 @@
                                 <li>Paint surface prep coat</li>
                             </ul>
                         </div>
-
-                        <a href="#booking" class="btn-service-book">
-                            Book This Package
-                        </a>
+                        <a href="#book" class="btn-service-book" data-package="decon">Book This Package</a>
 
                     </div>
 
@@ -4425,10 +4420,7 @@
                                 <li>UV & scratch resistance</li>
                             </ul>
                         </div>
-
-                        <a href="#booking" class="btn-service-book">
-                            Book This Package
-                        </a>
+                        <a href="#book" class="btn-service-book" data-package="ceramic">Book This Package</a>
 
                     </div>
 
@@ -4477,10 +4469,7 @@
                                 <li>Paint sealant application</li>
                             </ul>
                         </div>
-
-                        <a href="#booking" class="btn-service-book">
-                            Book This Package
-                        </a>
+                        <a href="#book" class="btn-service-book" data-package="paint">Book This Package</a>
 
                     </div>
 
@@ -4529,10 +4518,7 @@
                                 <li>Post-install ceramic top coat</li>
                             </ul>
                         </div>
-
-                        <a href="#booking" class="btn-service-book">
-                            Book This Package
-                        </a>
+                        <a href="#book" class="btn-service-book" data-package="ppf">Book This Package</a>
 
                     </div>
 
@@ -6170,21 +6156,51 @@
         }
     </script>
 
-    <!-- Book This Package Button - Scroll to Booking Section -->
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const buttons = document.querySelectorAll('.btn-service-book');
+            const packageSelect = document.getElementById('bf-package');
+            const estimateModal = document.getElementById('estimateModal');
+            const estServiceSelect = document.getElementById('estService');
+
+            // Map data-package values to estimate modal service options
+            const packageToService = {
+                'express': 'Express Detailing',
+                'full': 'Full Detail',
+                'decon': 'Deep Decontamination',
+                'ceramic': 'Ceramic Coating',
+                'ppf': 'PPF',
+                'paint': 'Paint Correction'
+            };
 
             buttons.forEach(button => {
-                button.addEventListener('click', function () {
-                    console.log("Button clicked - scrolling to booking section");
+                button.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    e.stopPropagation(); // Stop event from bubbling to card
 
-                    const bookingSection = document.getElementById('book');
+                    // Get package value from data attribute
+                    const pkgValue = this.getAttribute('data-package');
 
-                    if (bookingSection) {
-                        bookingSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    } else {
-                        console.warn("Booking section with id 'book' not found");
+                    // Set booking section dropdown value if it exists
+                    if (packageSelect && pkgValue) {
+                        packageSelect.value = pkgValue;
+                    }
+
+                    // Pre-select service in estimate modal
+                    if (estServiceSelect && pkgValue && packageToService[pkgValue]) {
+                        estServiceSelect.value = packageToService[pkgValue];
+                    }
+
+                    // Open the Quick Estimate Modal
+                    if (estimateModal) {
+                        estimateModal.classList.add('active');
+                        estimateModal.setAttribute('aria-hidden', 'false');
+                        document.body.style.overflow = 'hidden';
+                        setTimeout(() => {
+                            const focusable = estimateModal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+                            if (focusable.length) focusable[0].focus();
+                        }, 100);
                     }
                 });
             });
