@@ -496,8 +496,8 @@
 
         /* Wrapper: sets perspective for 3D depth */
         .service-card {
-            perspective: 1200px;
-            height: 300px;
+            perspective: 1400px;
+            height: 520px;
             cursor: pointer;
             background: transparent;
             border: none;
@@ -509,7 +509,7 @@
             position: relative;
             width: 100%;
             height: 100%;
-            transition: transform 0.75s cubic-bezier(0.4, 0.2, 0.2, 1);
+            transition: transform 0.85s cubic-bezier(0.35, 0.1, 0.15, 1);
             transform-style: preserve-3d;
         }
 
@@ -530,7 +530,7 @@
             inset: 0;
             width: 100%;
             height: 100%;
-            border-radius: 20px;
+            border-radius: 24px;
             backface-visibility: hidden;
             -webkit-backface-visibility: hidden;
             display: flex;
@@ -540,26 +540,41 @@
 
         /* ── FRONT FACE ── */
         .card-front {
-            background: linear-gradient(145deg, #0e1020 0%, #0a0b18 60%, #0c0e1a 100%);
-            padding: 16px 16px;
+            background:
+                radial-gradient(ellipse at 30% 0%, rgba(212, 175, 55, 0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 100%, rgba(212, 175, 55, 0.05) 0%, transparent 50%),
+                linear-gradient(160deg, #0f1122 0%, #090b17 45%, #0b0d1c 100%);
+            padding: 22px 22px;
             justify-content: center;
             align-items: center;
             text-align: center;
             border: 1px solid transparent;
             background-clip: padding-box;
-            /* Outer glow for highlight effect */
             box-shadow:
-                0 0 18px rgba(212, 175, 55, 0.25),
-                0 0 40px rgba(245, 208, 97, 0.12),
-                inset 0 0 0 1px rgba(212, 175, 55, 0.3);
-            transition: box-shadow 0.4s ease;
+                0 2px 8px rgba(0, 0, 0, 0.6),
+                0 8px 30px rgba(0, 0, 0, 0.5),
+                0 0 20px rgba(212, 175, 55, 0.18),
+                0 0 50px rgba(245, 208, 97, 0.08),
+                inset 0 0 0 1px rgba(212, 175, 55, 0.25);
+            transition: box-shadow 0.5s ease, transform 0.5s ease;
         }
 
-        .service-card:hover .card-front,
+        .service-card:hover .card-front {
+            box-shadow:
+                0 4px 16px rgba(0, 0, 0, 0.7),
+                0 16px 50px rgba(0, 0, 0, 0.5),
+                0 0 35px rgba(212, 175, 55, 0.45),
+                0 0 80px rgba(245, 208, 97, 0.18),
+                inset 0 0 0 1px rgba(245, 208, 97, 0.5);
+            transform: translateY(-4px);
+        }
+
         .service-card:hover .card-back {
             box-shadow:
-                0 0 30px rgba(212, 175, 55, 0.5),
-                0 0 60px rgba(245, 208, 97, 0.25),
+                0 4px 16px rgba(0, 0, 0, 0.7),
+                0 16px 50px rgba(0, 0, 0, 0.5),
+                0 0 35px rgba(212, 175, 55, 0.45),
+                0 0 80px rgba(245, 208, 97, 0.18),
                 inset 0 0 0 1px rgba(245, 208, 97, 0.5);
         }
 
@@ -573,22 +588,23 @@
             content: "";
             position: absolute;
             inset: -2px;
-            border-radius: 22px;
+            border-radius: 26px;
             background: linear-gradient(120deg,
                     rgba(212, 175, 55, 1),
                     rgba(245, 208, 97, 1),
                     rgba(230, 194, 122, 1),
+                    rgba(180, 140, 40, 1),
                     rgba(212, 175, 55, 1));
             background-size: 300% 300%;
             animation: borderGlow 3s ease infinite;
             z-index: -1;
-            opacity: 0.7;
-            transition: opacity 0.4s ease;
+            opacity: 0.65;
+            transition: opacity 0.4s ease, inset 0.4s ease;
         }
 
         .service-card:hover .card-front::before {
             opacity: 1;
-            inset: -2.5px;
+            inset: -3px;
         }
 
         /* Shine sweep overlay — runs automatically in a loop */
@@ -598,46 +614,31 @@
             top: -20%;
             left: -120%;
             width: 70%;
-            /* wider streak */
             height: 160%;
             background: linear-gradient(105deg,
                     rgba(255, 255, 255, 0) 0%,
-                    rgba(255, 255, 255, 0.15) 30%,
-                    rgba(255, 255, 255, 0.55) 50%,
-                    /* much brighter center */
-                    rgba(255, 255, 255, 0.15) 70%,
+                    rgba(255, 255, 255, 0.08) 30%,
+                    rgba(255, 255, 255, 0.4) 50%,
+                    rgba(255, 255, 255, 0.08) 70%,
                     rgba(255, 255, 255, 0) 100%);
             transform: skewX(-20deg);
             z-index: 5;
             pointer-events: none;
             opacity: 0;
-            /* 3s cycle — quicker and more noticeable */
-            animation: shineSweep 3s ease-in-out infinite;
+            animation: shineSweep 4s ease-in-out infinite;
         }
 
-        /* Staggered delays — each card shines 0.5s apart */
+        /* Staggered delays — each card shines 1.3s apart */
         .service-card:nth-child(1) .card-front::after {
             animation-delay: 0s;
         }
 
         .service-card:nth-child(2) .card-front::after {
-            animation-delay: 0.5s;
+            animation-delay: 1.3s;
         }
 
         .service-card:nth-child(3) .card-front::after {
-            animation-delay: 1.0s;
-        }
-
-        .service-card:nth-child(4) .card-front::after {
-            animation-delay: 1.5s;
-        }
-
-        .service-card:nth-child(5) .card-front::after {
-            animation-delay: 2.0s;
-        }
-
-        .service-card:nth-child(6) .card-front::after {
-            animation-delay: 2.5s;
+            animation-delay: 2.6s;
         }
 
         /* Front top area: badge + h3 */
@@ -649,7 +650,7 @@
             flex: 1;
             width: 100%;
             text-align: center;
-            padding: 20px;
+            padding: 40px 28px 20px;
             gap: 12px;
             z-index: 5;
         }
@@ -674,27 +675,32 @@
         }
 
         .service-card:hover .card-front img {
-            opacity: 0.12 !important;
-            transform: translateY(-5px) scale(1.05);
+            opacity: 0.15 !important;
+            transform: translateY(-8px) scale(1.06);
         }
 
         /* ── BACK FACE ── */
         .card-back {
-            background: linear-gradient(145deg, #10122a 0%, #0d0f24 60%, #0a0c1e 100%);
+            background:
+                radial-gradient(ellipse at 50% 0%, rgba(212, 175, 55, 0.07) 0%, transparent 55%),
+                linear-gradient(160deg, #111330 0%, #0d0f26 50%, #090b1e 100%);
             border: 1px solid transparent;
-            padding: 16px 16px;
+            padding: 28px 24px 22px;
             transform: rotateY(180deg);
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
-            justify-content: space-between;
+            align-items: stretch;
+            justify-content: flex-start;
             gap: 0;
             background-clip: padding-box;
+            box-sizing: border-box;
+            overflow: hidden;
             box-shadow:
-                0 0 18px rgba(212, 175, 55, 0.25),
-                0 0 40px rgba(245, 208, 97, 0.12),
-                inset 0 0 0 1px rgba(212, 175, 55, 0.3);
-            transition: box-shadow 0.4s ease;
+                0 2px 8px rgba(0, 0, 0, 0.6),
+                0 0 20px rgba(212, 175, 55, 0.18),
+                0 0 50px rgba(245, 208, 97, 0.08),
+                inset 0 0 0 1px rgba(212, 175, 55, 0.25);
+            transition: box-shadow 0.5s ease;
         }
 
         /* Top accent line on back */
@@ -702,43 +708,97 @@
             content: "";
             position: absolute;
             top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, rgba(245, 208, 97, 0.8), rgba(230, 194, 122, 0.7), transparent);
+            left: 10%;
+            right: 10%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(245, 208, 97, 0.9), rgba(230, 194, 122, 0.8), transparent);
             z-index: 4;
+        }
+
+        /* Corner ornament top-right on back */
+        .card-back::after {
+            content: "";
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            width: 28px;
+            height: 28px;
+            border-top: 1.5px solid rgba(212, 175, 55, 0.5);
+            border-right: 1.5px solid rgba(212, 175, 55, 0.5);
+            border-radius: 0 4px 0 0;
+            z-index: 4;
+            pointer-events: none;
         }
 
         /* Back title */
         .card-back-title {
             font-family: 'Orbitron', sans-serif;
-            font-size: 0.65rem;
+            font-size: 0.62rem;
             font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--magic-3);
-            margin-bottom: 24px;
-            text-align: center;
+            letter-spacing: 0.2em;
+            background: linear-gradient(90deg, var(--magic-1), var(--magic-2));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 16px;
+            text-align: left;
             position: relative;
             z-index: 2;
+            padding-bottom: 12px;
+            flex-shrink: 0;
+        }
+
+        .card-back-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 32px;
+            height: 1px;
+            background: linear-gradient(90deg, var(--magic-1), transparent);
+        }
+
+        /* ── BACK FACE INNER LAYOUT ── */
+        .card-back-top {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            min-height: 0;
+            width: 100%;
+            z-index: 2;
+            overflow: hidden;
         }
 
         /* ── BADGE / PRICE TAG ── */
         .badge {
             display: inline-block;
-            font-size: 0.52rem;
+            font-size: 0.5rem;
             font-weight: 800;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.12em;
             text-transform: uppercase;
-            padding: 5px 12px;
+            padding: 5px 13px;
             border-radius: 4px;
-            border: 1px solid #D4AF37;
-            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(212, 175, 55, 0.7);
+            background: rgba(0, 0, 0, 0.5);
             color: #D4AF37 !important;
             position: absolute;
-            top: 15px;
-            left: 15px;
+            top: 16px;
+            left: 16px;
             z-index: 10;
+            backdrop-filter: blur(6px);
+        }
+
+        /* Corner ornament on badge */
+        .badge::before {
+            content: "";
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            width: 8px;
+            height: 8px;
+            border-top: 1px solid rgba(212, 175, 55, 0.8);
+            border-left: 1px solid rgba(212, 175, 55, 0.8);
         }
 
         /* Shimmer on badge */
@@ -749,7 +809,7 @@
             left: -80%;
             width: 60%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
             transform: skewX(-20deg);
             animation: badgeShimmer 3s ease-in-out infinite;
         }
@@ -769,14 +829,15 @@
 
         /* ── CARD TITLE (FRONT) ── */
         .card-front h3 {
-            font-size: 1.25rem;
+            font-size: 1.45rem;
             font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: 0.08em;
+            letter-spacing: 0.1em;
             color: #fff;
-            line-height: 1.1;
+            line-height: 1.05;
             font-family: 'Orbitron', sans-serif;
             margin: 0;
+            text-shadow: 0 2px 20px rgba(212, 175, 55, 0.2);
         }
 
         .card-front-subtitle-small {
@@ -790,11 +851,11 @@
         }
 
         .card-front .subtitle {
-            font-size: 0.85rem;
-            color: rgba(226, 232, 240, 0.8);
-            line-height: 1.5;
+            font-size: 0.82rem;
+            color: rgba(226, 232, 240, 0.7);
+            line-height: 1.55;
             margin: 0;
-            max-width: 85%;
+            max-width: 88%;
         }
 
         /* ── FEATURE LIST (BACK) ── */
@@ -803,21 +864,27 @@
             padding: 0;
             margin: 0;
             width: 100%;
-            flex-grow: 1;
+            flex: 1;
+            min-height: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            overflow: hidden;
         }
 
         .feature-list li {
             display: flex;
             align-items: center;
-            justify-content: flex-start;
-            gap: 12px;
-            font-size: 0.72rem;
-            color: #fff;
+            flex-shrink: 1;
+            gap: 10px;
+            font-size: 0.76rem;
+            color: rgba(226, 232, 240, 0.88);
             font-weight: 500;
-            letter-spacing: 0.02em;
-            line-height: 1.4;
-            padding: 0;
-            text-align: center;
+            letter-spacing: 0.015em;
+            line-height: 1.35;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: left;
         }
 
         .feature-list li:last-child {
@@ -828,12 +895,67 @@
         .feature-list li::before {
             content: "";
             flex-shrink: 0;
-            width: 12px;
-            height: 12px;
+            width: 14px;
+            height: 14px;
             border-radius: 50%;
             background: linear-gradient(135deg, #D4AF37, #F5D061) center/cover;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none'%3E%3Cpath d='M2.5 6L5 8.5L9.5 4' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
             background-size: cover;
+            box-shadow: 0 0 6px rgba(212, 175, 55, 0.4);
+        }
+
+        /* ── PRICING PILLS (FRONT) ── */
+        .card-pricing-row {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 6px;
+        }
+
+        .price-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            background: rgba(212, 175, 55, 0.08);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            font-size: 0.57rem;
+            color: rgba(200, 168, 75, 0.85);
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            white-space: nowrap;
+            backdrop-filter: blur(4px);
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        .service-card:hover .price-pill {
+            background: rgba(212, 175, 55, 0.14);
+            border-color: rgba(212, 175, 55, 0.5);
+        }
+
+        .price-pill strong {
+            color: var(--magic-2);
+            font-weight: 700;
+            font-size: 0.62rem;
+        }
+
+        .card-duration {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.6rem;
+            color: var(--muted);
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            letter-spacing: 0.06em;
+            margin-top: 4px;
+            padding: 3px 10px;
+            border-radius: 20px;
+            background: rgba(148, 163, 184, 0.07);
+            border: 1px solid rgba(148, 163, 184, 0.15);
         }
 
         /* Front side hook hint */
@@ -952,10 +1074,7 @@
             .service-card {
                 flex: 0 0 85%;
                 scroll-snap-align: center;
-                height: 350px;
-            }
-
-            .section-title {
+                height: 650px;
                 font-size: clamp(1.8rem, 8vw, 2.4rem);
                 line-height: 1.1;
                 word-break: keep-all;
@@ -1002,15 +1121,11 @@
             }
 
             .service-card {
-                height: 300px;
-            }
-
-            .card-front {
-                padding: 12px 14px;
+                height: 600px;
             }
 
             .card-back {
-                padding: 12px 14px;
+                padding: 22px 18px;
             }
         }
 
@@ -1567,29 +1682,45 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            margin-top: 20px;
+            gap: 8px;
+            flex-shrink: 0;
+            margin-top: 16px;
             width: 100%;
             padding: 14px 18px;
             border-radius: 50px;
             border: none;
             cursor: pointer;
-            background: #D4AF37;
-            color: #fff;
-            font-size: 0.82rem;
+            background: linear-gradient(90deg, #D4AF37, #F5D061, #E6C27A, #D4AF37);
+            background-size: 300% auto;
+            animation: magic-flow 5s linear infinite;
+            color: #0a0800;
+            font-size: 0.78rem;
             font-weight: 800;
-            letter-spacing: 0.08em;
+            letter-spacing: 0.12em;
             text-transform: uppercase;
+            font-family: 'Orbitron', sans-serif;
             transition: all 0.3s ease;
             text-decoration: none;
             position: relative;
             z-index: 10;
             pointer-events: auto;
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.35), 0 1px 0 rgba(255, 255, 255, 0.2) inset;
+        }
+
+        .btn-service-book::after {
+            content: "→";
+            font-size: 0.9rem;
+            font-family: 'Inter', sans-serif;
+            transition: transform 0.25s ease;
         }
 
         .btn-service-book:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
-            background: #F5D061;
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.55), 0 1px 0 rgba(255, 255, 255, 0.3) inset;
+        }
+
+        .btn-service-book:hover::after {
+            transform: translateX(4px);
         }
 
 
@@ -2832,20 +2963,20 @@
                 max-width: 280px !important;
                 flex: 0 0 auto !important;
                 scroll-snap-align: center;
-                height: 300px !important;
+                height: 580px !important;
             }
 
             .service-card {
-                height: auto;
-                min-height: 175px;
+                height: 580px;
+                min-height: 580px;
                 perspective: 1200px;
             }
 
             .card-front,
             .card-back {
-                padding: 16px 14px;
+                padding: 22px 18px;
                 border-radius: 16px;
-                min-height: 175px;
+                min-height: 580px;
                 justify-content: space-between;
             }
 
@@ -2882,6 +3013,18 @@
                 font-size: 0.65rem;
                 bottom: 16px;
                 right: 16px;
+            }
+
+            .feature-list {
+                overflow: visible;
+                flex: unset;
+                min-height: unset;
+            }
+
+            .card-back-top {
+                overflow: visible;
+                flex: unset;
+                min-height: unset;
             }
 
             .badge {
@@ -3204,9 +3347,12 @@
                 min-width: 0 !important;
             }
 
-            /* Hide the duplicate set of brands on mobile (6 unique brands) */
-            .marquee-track>.brand-pill:nth-child(n+7) {
+            /* Hide the duplicate set of brands on mobile (7 unique brands) */
+            .marquee-track>.brand-pill:nth-child(n+8) {
                 display: none !important;
+            }
+            .marquee-track>.brand-pill:nth-child(7) {
+                grid-column: 2; /* Center the 7th item in a 3-column grid */
             }
 
             .brand-pill {
@@ -4235,17 +4381,24 @@
         <div class="service-container">
 
 
-            <!-- 1. EXPRESS DETAIL -->
+            <!-- 1. EXPRESS DETAILING -->
             <div class="service-card">
                 <div class="card-inner">
 
                     <div class="card-front">
                         <div class="card-front-top">
                             <span class="badge">STARTING AT &#8377; 2,999</span>
-                            <h3>Express Detail</h3>
+                            <h3>Express Detailing</h3>
                             <p class="subtitle">
-                                A swift yet thorough refresh for your vehicle — perfect for regular upkeep.
+                                100% hand wash, premium wax &amp; thorough vacuum — the perfect regular upkeep refresh.
                             </p>
+                            <div class="card-pricing-row">
+                                <span class="price-pill">S <strong>&#8377;2,999</strong></span>
+                                <span class="price-pill">M <strong>&#8377;2,999</strong></span>
+                                <span class="price-pill">L <strong>&#8377;3,499</strong></span>
+                                <span class="price-pill">XL <strong>&#8377;3,999</strong></span>
+                            </div>
+                            <div class="card-duration">⏱ &nbsp;1.5 – 2 Hours</div>
                             <div class="card-front-hint">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                     stroke-linecap="round" stroke-linejoin="round">
@@ -4267,23 +4420,22 @@
                         <div class="card-back-top">
                             <div class="card-back-title">What's Included</div>
                             <ul class="feature-list">
-                                <li>Hand wash & wheel clean</li>
-                                <li>Premium 2–4 week wax</li>
-                                <li>Tire dressing (satin finish)</li>
-                                <li>Air blow cracks & door jams</li>
-                                <li>Interior vacuum & wipe-down</li>
-                                <li>Window cleaning inside & out</li>
+                                <li>100% Hand Wash with Premium Shampoo</li>
+                                <li>Wheels Thoroughly Cleaned</li>
+                                <li>Premium Quality Wax (2–4 Weeks Protection)</li>
+                                <li>Full Vacuum — Carpets, Seats &amp; Floor Mats</li>
+                                <li>Crystal-clear Exterior Glass Cleaning</li>
+                                <li>Premium Tire Dressing (Satin Finish)</li>
                             </ul>
                         </div>
                         <a href="#book" class="btn-service-book" data-package="express">Book This Package</a>
-
                     </div>
 
                 </div>
             </div>
 
 
-            <!-- 2. FULL DETAIL -->
+            <!-- 2. FULL DETAIL (IN AND OUT) -->
             <div class="service-card">
                 <div class="card-inner">
 
@@ -4292,8 +4444,16 @@
                             <span class="badge">STARTING AT &#8377; 3,999</span>
                             <h3>Full Detail</h3>
                             <p class="subtitle">
-                                The complete alchemy treatment — every inch of your car brought back to life.
+                                Complete in &amp; out treatment — every interior surface scrubbed, every exterior
+                                surface perfected.
                             </p>
+                            <div class="card-pricing-row">
+                                <span class="price-pill">S <strong>&#8377;3,999</strong></span>
+                                <span class="price-pill">M <strong>&#8377;3,999</strong></span>
+                                <span class="price-pill">L <strong>&#8377;4,999</strong></span>
+                                <span class="price-pill">XL <strong>&#8377;5,999</strong></span>
+                            </div>
+                            <div class="card-duration">⏱ &nbsp;3 – 4 Hours</div>
                             <div class="card-front-hint">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                     stroke-linecap="round" stroke-linejoin="round">
@@ -4315,33 +4475,39 @@
                         <div class="card-back-top">
                             <div class="card-back-title">What's Included</div>
                             <ul class="feature-list">
-                                <li>Hand wash with premium shampoo</li>
-                                <li>Premium quality wax (2–4 weeks)</li>
-                                <li>All interior surfaces scrubbed</li>
-                                <li>Deep vacuum: carpets, seats, mats</li>
-                                <li>Engine bay light clean</li>
-                                <li>Leather conditioning treatment</li>
+                                <li>Everything in Express Detailing</li>
+                                <li>Door Panels &amp; Center Console Scrubbed</li>
+                                <li>Dashboard &amp; Steering Wheel Deep Cleaned</li>
+                                <li>Cup Holders Thoroughly Cleaned</li>
+                                <li>All Interior Surfaces Scrubbed Down</li>
                             </ul>
                         </div>
                         <a href="#book" class="btn-service-book" data-package="full">Book This Package</a>
-
                     </div>
 
                 </div>
             </div>
 
 
-            <!-- 3. DECONTAMINATION -->
+            <!-- 3. DEEP DECONTAMINATION DETAIL (IN AND OUT) -->
             <div class="service-card">
                 <div class="card-inner">
 
                     <div class="card-front">
                         <div class="card-front-top">
                             <span class="badge">STARTING AT &#8377; 4,999</span>
-                            <h3>Decontamination</h3>
+                            <h3>Deep Decon</h3>
                             <p class="subtitle">
-                                Deep science for stubborn contaminants — iron, tar, water spots eliminated.
+                                Full decontamination in &amp; out — clay bar, iron &amp; tar treatment with leather
+                                conditioning.
                             </p>
+                            <div class="card-pricing-row">
+                                <span class="price-pill">S <strong>&#8377;4,999</strong></span>
+                                <span class="price-pill">M <strong>&#8377;4,999</strong></span>
+                                <span class="price-pill">L <strong>&#8377;5,999</strong></span>
+                                <span class="price-pill">XL <strong>&#8377;7,999</strong></span>
+                            </div>
+                            <div class="card-duration">⏱ &nbsp;4 – 5 Hours</div>
                             <div class="card-front-hint">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                     stroke-linecap="round" stroke-linejoin="round">
@@ -4363,163 +4529,14 @@
                         <div class="card-back-top">
                             <div class="card-back-title">What's Included</div>
                             <ul class="feature-list">
-                                <li>Clay bar & iron treatment</li>
-                                <li>Water spot & tar removal</li>
-                                <li>Leather seat treatment</li>
-                                <li>Rubber floor mat deep clean</li>
-                                <li>Thorough vacuuming</li>
-                                <li>Paint surface prep coat</li>
+                                <li>Everything in Full Detail</li>
+                                <li>Paint Decontamination (Claybar &amp; Iron Treatment)</li>
+                                <li>Water Spots Removal on Exterior Body</li>
+                                <li>Exterior Body Tar Remover</li>
+                                <li>Leather Seats Conditioning</li>
                             </ul>
                         </div>
                         <a href="#book" class="btn-service-book" data-package="decon">Book This Package</a>
-
-                    </div>
-
-                </div>
-            </div>
-
-
-            <!-- 4. CERAMIC COATING -->
-            <div class="service-card">
-                <div class="card-inner">
-
-                    <div class="card-front">
-                        <div class="card-front-top">
-                            <span class="badge">STARTING AT &#8377; 9,999</span>
-                            <h3>Ceramic Coating</h3>
-                            <p class="subtitle">
-                                Long-lasting nano-ceramic protection — repels water, UV, and contamination for years.
-                            </p>
-                            <div class="card-front-hint">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M8 13v-8.5a1.5 1.5 0 0 1 3 0v7.5" />
-                                    <path d="M11 11.5v-2a1.5 1.5 0 0 1 3 0v2.5" />
-                                    <path d="M14 10.5v-1a1.5 1.5 0 0 1 3 0v3.5" />
-                                    <path
-                                        d="M17 11.5v-1a1.5 1.5 0 0 1 3 0v4.5a6 6 0 0 1-6 6h-2a6 6 0 0 1-6-6v-5.5a1.5 1.5 0 0 1 3 0v3.5" />
-                                </svg>
-                                TAP FOR DETAILS
-                            </div>
-                        </div>
-                        <div class="card-front-bottom">
-                            <img class="card-front-img" src="service_koenigsegg_white_1774953200395.png"
-                                alt="Koenigsegg">
-                        </div>
-                    </div>
-
-                    <div class="card-back">
-                        <div class="card-back-top">
-                            <div class="card-back-title">What's Included</div>
-                            <ul class="feature-list">
-                                <li>Full paint decontamination</li>
-                                <li>Machine paint correction</li>
-                                <li>Professional ceramic application</li>
-                                <li>2–5 year protection warranty</li>
-                                <li>Hydrophobic finish</li>
-                                <li>UV & scratch resistance</li>
-                            </ul>
-                        </div>
-                        <a href="#book" class="btn-service-book" data-package="ceramic">Book This Package</a>
-
-                    </div>
-
-                </div>
-            </div>
-
-
-            <!-- 5. PAINT CORRECTION -->
-            <div class="service-card">
-                <div class="card-inner">
-
-                    <div class="card-front">
-                        <div class="card-front-top">
-                            <span class="badge">STARTING AT &#8377; 14,999</span>
-                            <h3>Paint Correction</h3>
-                            <p class="subtitle">
-                                Swirl marks, scratches, and oxidation dissolved with machine polishing mastery.
-                            </p>
-                            <div class="card-front-hint">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M8 13v-8.5a1.5 1.5 0 0 1 3 0v7.5" />
-                                    <path d="M11 11.5v-2a1.5 1.5 0 0 1 3 0v2.5" />
-                                    <path d="M14 10.5v-1a1.5 1.5 0 0 1 3 0v3.5" />
-                                    <path
-                                        d="M17 11.5v-1a1.5 1.5 0 0 1 3 0v4.5a6 6 0 0 1-6 6h-2a6 6 0 0 1-6-6v-5.5a1.5 1.5 0 0 1 3 0v3.5" />
-                                </svg>
-                                TAP FOR DETAILS
-                            </div>
-                        </div>
-                        <div class="card-front-bottom">
-                            <img class="card-front-img" src="service_merc_black_1774953400000_1774953260285.png"
-                                alt="Mercedes">
-                        </div>
-                    </div>
-
-                    <div class="card-back">
-                        <div class="card-back-top">
-                            <div class="card-back-title">What's Included</div>
-                            <ul class="feature-list">
-                                <li>Single or dual-stage polishing</li>
-                                <li>Swirl mark elimination</li>
-                                <li>Light scratch removal</li>
-                                <li>Paint depth measurement</li>
-                                <li>Finishing polish</li>
-                                <li>Paint sealant application</li>
-                            </ul>
-                        </div>
-                        <a href="#book" class="btn-service-book" data-package="paint">Book This Package</a>
-
-                    </div>
-
-                </div>
-            </div>
-
-
-            <!-- 6. PPF WRAP -->
-            <div class="service-card">
-                <div class="card-inner">
-
-                    <div class="card-front">
-                        <div class="card-front-top">
-                            <span class="badge">STARTING AT &#8377; 14,999</span>
-                            <h3>PPF Wrap</h3>
-                            <p class="subtitle">
-                                Paint Protection Film — invisible armour against stone chips, bugs, and road debris.
-                            </p>
-                            <div class="card-front-hint">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M8 13v-8.5a1.5 1.5 0 0 1 3 0v7.5" />
-                                    <path d="M11 11.5v-2a1.5 1.5 0 0 1 3 0v2.5" />
-                                    <path d="M14 10.5v-1a1.5 1.5 0 0 1 3 0v3.5" />
-                                    <path
-                                        d="M17 11.5v-1a1.5 1.5 0 0 1 3 0v4.5a6 6 0 0 1-6 6h-2a6 6 0 0 1-6-6v-5.5a1.5 1.5 0 0 1 3 0v3.5" />
-                                </svg>
-                                TAP FOR DETAILS
-                            </div>
-                        </div>
-                        <div class="card-front-bottom">
-                            <img class="card-front-img" src="service_bugatti_blue_1774953400000_1774953291278.png"
-                                alt="Bugatti">
-                        </div>
-                    </div>
-
-                    <div class="card-back">
-                        <div class="card-back-top">
-                            <div class="card-back-title">What's Included</div>
-                            <ul class="feature-list">
-                                <li>Partial or full body coverage</li>
-                                <li>Self-healing film technology</li>
-                                <li>10-year warranty coverage</li>
-                                <li>High-clarity optical finish</li>
-                                <li>Pre-cut precision application</li>
-                                <li>Post-install ceramic top coat</li>
-                            </ul>
-                        </div>
-                        <a href="#book" class="btn-service-book" data-package="ppf">Book This Package</a>
-
                     </div>
 
                 </div>
@@ -4664,6 +4681,43 @@
         </div>
     </section>
 
+    <!-- ─── CUSTOM BRAND LOGO STYLES ─── -->
+    <style>
+        .brand-img {
+            height: 44px;
+            width: 44px;
+            min-width: 44px;
+            min-height: 44px;
+            flex-shrink: 0;
+            object-fit: contain;
+            border-radius: 10px;
+            background: #fff;
+            padding: 4px;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.15);
+            transition: transform 0.3s ease;
+            display: block;
+        }
+        .brand-pill:hover .brand-img {
+            transform: scale(1.1);
+        }
+        .brand-pill {
+            gap: 12px; 
+            padding: 12px 24px;
+            box-sizing: border-box;
+        }
+        @media (max-width: 900px) {
+            .brand-img {
+                height: 38px;
+                width: 38px;
+                min-width: 38px;
+                min-height: 38px;
+            }
+            .brand-pill {
+                padding: 10px !important;
+            }
+        }
+    </style>
+
     <!-- ─── PRODUCTS WE TRUST (MARQUEE) ─── -->
     <section class="products-section" id="products">
         <h2 class="section-title">Trusted By <span>The Best</span></h2>
@@ -4672,21 +4726,21 @@
             <!-- The track contains 2 identical sets of brands so it loops seamlessly -->
             <div class="marquee-track">
                 <!-- Set 1 -->
-                <div class="brand-pill"><span>STEK</span></div>
-                <div class="brand-pill"><span>CARPRO</span></div>
-                <div class="brand-pill"><span>KOCH CHEMIE</span></div>
-                <div class="brand-pill"><span>PRISMAX</span></div>
-                <div class="brand-pill"><span>VONIX</span></div>
-                <div class="brand-pill"><span>VINTEX</span></div>
-                <div class="brand-pill"><span>RUPES</span></div>
+                <div class="brand-pill"><img src="stek_logo.png" alt="STEK" class="brand-img"></div>
+                <div class="brand-pill"><img src="carpro_logo.png" alt="CARPRO" class="brand-img"></div>
+                <div class="brand-pill"><img src="koch_chemie_logo.png" alt="KOCH CHEMIE" class="brand-img"></div>
+                <div class="brand-pill"><img src="prismax_logo.png" alt="PRISMAX" class="brand-img"></div>
+                <div class="brand-pill"><img src="vonixx_logo.png" alt="VONIXX" class="brand-img"></div>
+                <div class="brand-pill"><img src="vintex_logo.png" alt="VINTEX" class="brand-img"></div>
+                <div class="brand-pill"><img src="rupes_logo.png" alt="RUPES" class="brand-img"></div>
                 <!-- Set 2 (Duplicate for infinite loop) -->
-                <div class="brand-pill"><span>STEK</span></div>
-                <div class="brand-pill"><span>CARPRO</span></div>
-                <div class="brand-pill"><span>KOCH CHEMIE</span></div>
-                <div class="brand-pill"><span>PRISMAX</span></div>
-                <div class="brand-pill"><span>VONIX</span></div>
-                <div class="brand-pill"><span>VINTEX</span></div>
-                <div class="brand-pill"><span>RUPES</span></div>
+                <div class="brand-pill"><img src="stek_logo.png" alt="STEK" class="brand-img"></div>
+                <div class="brand-pill"><img src="carpro_logo.png" alt="CARPRO" class="brand-img"></div>
+                <div class="brand-pill"><img src="koch_chemie_logo.png" alt="KOCH CHEMIE" class="brand-img"></div>
+                <div class="brand-pill"><img src="prismax_logo.png" alt="PRISMAX" class="brand-img"></div>
+                <div class="brand-pill"><img src="vonixx_logo.png" alt="VONIXX" class="brand-img"></div>
+                <div class="brand-pill"><img src="vintex_logo.png" alt="VINTEX" class="brand-img"></div>
+                <div class="brand-pill"><img src="rupes_logo.png" alt="RUPES" class="brand-img"></div>
             </div>
         </div>
     </section>
@@ -4871,10 +4925,6 @@
                                 <option value="express">Express Detailing – from ₹2,999</option>
                                 <option value="full">Full Detail (In/Out) – from ₹3,999</option>
                                 <option value="decon">Deep Decontamination (In/Out) – from ₹4,999</option>
-                                <option value="ceramic">Ceramic Coating – from ₹9,999</option>
-                                <option value="paint">Paint Correction – from ₹14,999</option>
-                                <option value="ppf">PPF (Paint Protection Film) – from ₹14,999</option>
-                                <option value="painting">Painting Services – Get Quote</option>
                             </select>
                         </div>
                     </div>
@@ -6259,11 +6309,6 @@
                             <option value="Express Detailing">Express Detailing</option>
                             <option value="Full Detail">Full Detail (In/Out)</option>
                             <option value="Deep Decontamination">Deep Decontamination (In/Out)</option>
-                            <option value="Ceramic Coating">Ceramic Coating</option>
-                            <option value="PPF">PPF (Paint Protection Film)</option>
-                            <option value="Paint Correction">Paint Correction</option>
-                            <option value="Painting Services">Painting Services</option>
-                            <option value="Other">Other Services</option>
                         </select>
                         <div class="estimate-form-error">Please select a service type.</div>
                     </div>
@@ -6277,6 +6322,59 @@
                             <option value="₹1L+">Above ₹1,00,000</option>
                         </select>
                         <div class="estimate-form-error">Please select a budget range.</div>
+                    </div>
+                    <div class="estimate-form-group">
+                        <label>Add-Ons (Optional)</label>
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px;">
+                            <label
+                                style="display:flex;align-items:center;gap:8px;font-size:0.78rem;color:#e2e8f0;cursor:pointer;font-weight:400;">
+                                <input type="checkbox" name="addon" value="Decon Wash – ₹1999"
+                                    style="accent-color:#D4AF37;width:14px;height:14px;"> Decon Wash <span
+                                    style="color:#D4AF37;font-size:0.7rem;">₹1,999</span>
+                            </label>
+                            <label
+                                style="display:flex;align-items:center;gap:8px;font-size:0.78rem;color:#e2e8f0;cursor:pointer;font-weight:400;">
+                                <input type="checkbox" name="addon" value="Engine Bay Steam – ₹1999"
+                                    style="accent-color:#D4AF37;width:14px;height:14px;"> Engine Bay Steam <span
+                                    style="color:#D4AF37;font-size:0.7rem;">₹1,999</span>
+                            </label>
+                            <label
+                                style="display:flex;align-items:center;gap:8px;font-size:0.78rem;color:#e2e8f0;cursor:pointer;font-weight:400;">
+                                <input type="checkbox" name="addon" value="Watermark Rims Remove – ₹999"
+                                    style="accent-color:#D4AF37;width:14px;height:14px;"> Rim Watermarks <span
+                                    style="color:#D4AF37;font-size:0.7rem;">₹999</span>
+                            </label>
+                            <label
+                                style="display:flex;align-items:center;gap:8px;font-size:0.78rem;color:#e2e8f0;cursor:pointer;font-weight:400;">
+                                <input type="checkbox" name="addon" value="Hand Waxing – ₹1999"
+                                    style="accent-color:#D4AF37;width:14px;height:14px;"> Hand Waxing <span
+                                    style="color:#D4AF37;font-size:0.7rem;">₹1,999</span>
+                            </label>
+                            <label
+                                style="display:flex;align-items:center;gap:8px;font-size:0.78rem;color:#e2e8f0;cursor:pointer;font-weight:400;">
+                                <input type="checkbox" name="addon" value="Paint Correction & Sealant – ₹14999"
+                                    style="accent-color:#D4AF37;width:14px;height:14px;"> Paint Correction &amp; Sealant
+                                <span style="color:#D4AF37;font-size:0.7rem;">₹14,999</span>
+                            </label>
+                            <label
+                                style="display:flex;align-items:center;gap:8px;font-size:0.78rem;color:#e2e8f0;cursor:pointer;font-weight:400;">
+                                <input type="checkbox" name="addon" value="Steam Wash Exterior – ₹1999"
+                                    style="accent-color:#D4AF37;width:14px;height:14px;"> Steam Wash Exterior <span
+                                    style="color:#D4AF37;font-size:0.7rem;">₹1,999</span>
+                            </label>
+                            <label
+                                style="display:flex;align-items:center;gap:8px;font-size:0.78rem;color:#e2e8f0;cursor:pointer;font-weight:400;">
+                                <input type="checkbox" name="addon" value="Pet Hair Removal – ₹999"
+                                    style="accent-color:#D4AF37;width:14px;height:14px;"> Pet Hair Removal <span
+                                    style="color:#D4AF37;font-size:0.7rem;">₹999</span>
+                            </label>
+                            <label
+                                style="display:flex;align-items:center;gap:8px;font-size:0.78rem;color:#e2e8f0;cursor:pointer;font-weight:400;">
+                                <input type="checkbox" name="addon" value="Plastic Trim Restoration – ₹1299"
+                                    style="accent-color:#D4AF37;width:14px;height:14px;"> Plastic Trim Restore <span
+                                    style="color:#D4AF37;font-size:0.7rem;">₹1,299</span>
+                            </label>
+                        </div>
                     </div>
                     <div class="estimate-form-group">
                         <label for="estNotes">Additional Notes</label>
@@ -6406,7 +6504,12 @@
                 const budget = document.getElementById('estBudget').value;
                 const notes = document.getElementById('estNotes').value.trim();
 
+                const selectedAddons = [...document.querySelectorAll('input[name="addon"]:checked')].map(cb => cb.value);
+
                 let message = `*New Quick Estimate Request*%0A%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Car:* ${brand} ${model}%0A*Service:* ${service}%0A*Budget:* ${budget}`;
+                if (selectedAddons.length) {
+                    message += `%0A*Add-Ons:* ${selectedAddons.join(', ')}`;
+                }
                 if (notes) {
                     message += `%0A*Notes:* ${notes}`;
                 }
