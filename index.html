@@ -64,11 +64,14 @@
             }
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             background: var(--bg);
             color: #fff;
             font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth;
         }
 
         /* ─── NAVBAR ─── */
@@ -88,7 +91,9 @@
             -webkit-backdrop-filter: none;
             border-bottom: none;
             z-index: 999;
-            transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.4s ease, backdrop-filter 0.4s ease, border 0.4s ease, padding 0.4s ease;
+            will-change: transform, background;
+            transform: translate3d(0,0,0);
         }
 
         .navbar.scrolled {
@@ -124,7 +129,8 @@
             bottom: -150px;
             opacity: 0;
             pointer-events: none;
-            transition: bottom 0.5s ease, opacity 0.5s ease;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+            transform: translate3d(0, 150px, 0);
         }
 
         @media (min-width: 901px) {
@@ -218,6 +224,8 @@
             object-fit: cover;
             object-position: center 50%;
             z-index: 0;
+            will-change: transform;
+            transform: translate3d(0,0,0);
         }
 
         /* Cinematic dark overlay */
@@ -502,6 +510,9 @@
             background: transparent;
             border: none;
             padding: 0;
+            will-change: transform;
+            transform: translate3d(0,0,0);
+            contain: layout;
         }
 
         /* Inner container that actually flips */
@@ -511,6 +522,7 @@
             height: 100%;
             transition: transform 0.85s cubic-bezier(0.35, 0.1, 0.15, 1);
             transform-style: preserve-3d;
+            will-change: transform;
         }
 
         /* Flip state controlled via JS (.flipped class) */
@@ -1072,47 +1084,68 @@
             }
 
             .service-card {
-                flex: 0 0 85%;
+                flex: 0 0 80%;
+                max-width: 250px;
+                margin: 0 auto;
                 scroll-snap-align: center;
-                height: 650px;
-                font-size: clamp(1.8rem, 8vw, 2.4rem);
-                line-height: 1.1;
-                word-break: keep-all;
-                overflow-wrap: normal;
-                white-space: normal;
-                max-width: 100%;
-                padding-left: 20px;
-                padding-right: 20px;
-                box-sizing: border-box;
-                display: block;
-                text-align: center;
+                height: 330px;
             }
 
-            h2 br,
-            h3 br,
-            .section-title br {
-                display: none !important;
+            .card-front-top {
+                padding: 20px 15px 10px !important;
             }
 
-            section,
-            .container,
-            .content,
-            [class*="section"] {
-                width: 100%;
-                max-width: 100vw;
-                box-sizing: border-box;
-                overflow-x: hidden;
-                padding: 80px 6% !important;
+            .card-front h3 {
+                font-size: 1.1rem !important;
             }
 
-            #home,
-            .hero {
-                padding-top: 0 !important;
+            .card-front .subtitle {
+                font-size: 0.7rem !important;
             }
 
-            * {
-                max-width: 100vw;
+            .badge {
+                font-size: 0.5rem !important;
+                padding: 4px 6px !important;
             }
+
+            font-size: clamp(1.8rem, 8vw, 2.4rem);
+            line-height: 1.1;
+            word-break: keep-all;
+            overflow-wrap: normal;
+            white-space: normal;
+            max-width: 100%;
+            padding-left: 20px;
+            padding-right: 20px;
+            box-sizing: border-box;
+            display: block;
+            text-align: center;
+        }
+
+        h2 br,
+        h3 br,
+        .section-title br {
+            display: none !important;
+        }
+
+        section,
+        .container,
+        .content,
+        [class*="section"] {
+            width: 100%;
+            max-width: 100vw;
+            box-sizing: border-box;
+            overflow-x: hidden;
+            padding: 80px 6% !important;
+        }
+
+        #home,
+        .hero {
+            padding-top: 0 !important;
+        }
+
+        * {
+            max-width: 100vw;
+        }
         }
 
         @media (max-width: 768px) {
@@ -1121,7 +1154,7 @@
             }
 
             .service-card {
-                height: 600px;
+                height: 330px;
             }
 
             .card-back {
@@ -2040,6 +2073,8 @@
             position: relative;
             border-top: none;
             z-index: 100;
+            will-change: transform;
+            transform: translate3d(0,0,0);
         }
 
         .footer-grid {
@@ -2959,24 +2994,20 @@
             }
 
             .service-card {
-                min-width: 280px !important;
-                max-width: 280px !important;
+                min-width: 240px !important;
+                max-width: 240px !important;
                 flex: 0 0 auto !important;
                 scroll-snap-align: center;
-                height: 580px !important;
-            }
-
-            .service-card {
-                height: 580px;
-                min-height: 580px;
+                height: 310px !important;
+                min-height: 310px !important;
                 perspective: 1200px;
             }
 
             .card-front,
             .card-back {
-                padding: 22px 18px;
+                padding: 15px 12px;
                 border-radius: 16px;
-                min-height: 580px;
+                min-height: 310px !important;
                 justify-content: space-between;
             }
 
@@ -3351,8 +3382,10 @@
             .marquee-track>.brand-pill:nth-child(n+8) {
                 display: none !important;
             }
+
             .marquee-track>.brand-pill:nth-child(7) {
-                grid-column: 2; /* Center the 7th item in a 3-column grid */
+                grid-column: 2;
+                /* Center the 7th item in a 3-column grid */
             }
 
             .brand-pill {
@@ -4234,8 +4267,7 @@
 
     <!-- ─── NAVBAR ─── -->
     <header class="navbar">
-        <a href="#" class="logo"><img
-                src="https://res.cloudinary.com/drlg1t6pk/image/upload/v1774865270/logo_ilq8wl.png"
+        <a href="#" class="logo"><img loading="lazy" decoding="async" src="https://res.cloudinary.com/drlg1t6pk/image/upload/v1774865270/logo_ilq8wl.png"
                 alt="LuxDrive Logo"></a>
 
         <nav>
@@ -4264,7 +4296,7 @@
                 <a href="#services" class="btn-hero-pill">View Packages</a>
             </div>
         </div>
-        <div id="toast-notification-container" class="toast-notification-container"></div>
+
     </section>
 
     <!-- ─── PAINTING SERVICES SECTION ─── -->
@@ -4387,18 +4419,13 @@
 
                     <div class="card-front">
                         <div class="card-front-top">
-                            <span class="badge">STARTING AT &#8377; 2,999</span>
-                            <h3>Express Detailing</h3>
+                            <span class="badge">PREMIUM SERVICE</span>
+                            <h3>Paint Protection</h3>
                             <p class="subtitle">
-                                100% hand wash, premium wax &amp; thorough vacuum — the perfect regular upkeep refresh.
+                                Ultimate protection for your luxury vehicle against scratches, chips, and the elements.
                             </p>
-                            <div class="card-pricing-row">
-                                <span class="price-pill">S <strong>&#8377;2,999</strong></span>
-                                <span class="price-pill">M <strong>&#8377;2,999</strong></span>
-                                <span class="price-pill">L <strong>&#8377;3,499</strong></span>
-                                <span class="price-pill">XL <strong>&#8377;3,999</strong></span>
-                            </div>
-                            <div class="card-duration">⏱ &nbsp;1.5 – 2 Hours</div>
+
+
                             <div class="card-front-hint">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                     stroke-linecap="round" stroke-linejoin="round">
@@ -4412,7 +4439,7 @@
                             </div>
                         </div>
                         <div class="card-front-bottom">
-                            <img class="card-front-img" src="service_ferrari_red_1774953144261.png" alt="Ferrari">
+                            <img class="card-front-img" src="service_ferrari_red_1774953144261.png" alt="Ferrari" loading="lazy" decoding="async">
                         </div>
                     </div>
 
@@ -4420,15 +4447,15 @@
                         <div class="card-back-top">
                             <div class="card-back-title">What's Included</div>
                             <ul class="feature-list">
-                                <li>100% Hand Wash with Premium Shampoo</li>
-                                <li>Wheels Thoroughly Cleaned</li>
-                                <li>Premium Quality Wax (2–4 Weeks Protection)</li>
-                                <li>Full Vacuum — Carpets, Seats &amp; Floor Mats</li>
-                                <li>Crystal-clear Exterior Glass Cleaning</li>
-                                <li>Premium Tire Dressing (Satin Finish)</li>
+                                <li>PPF (Paint Protection Film)</li>
+                                <li>Coatings (Icon Rockclear, Ceramic, Graphene, Borophene)</li>
+                                <li>Interior PPF</li>
                             </ul>
+                            <p
+                                style="color: #D4AF37; font-size: 0.75rem; font-family: 'Orbitron', sans-serif; margin-top: 15px; font-weight: 700; text-align: left;">
+                                For quotes please contact +91-7868025790</p>
                         </div>
-                        <a href="#book" class="btn-service-book" data-package="express">Book This Package</a>
+                        <a href="tel:+917868025790" class="btn-service-book">Call For Quotes</a>
                     </div>
 
                 </div>
@@ -4441,19 +4468,12 @@
 
                     <div class="card-front">
                         <div class="card-front-top">
-                            <span class="badge">STARTING AT &#8377; 3,999</span>
-                            <h3>Full Detail</h3>
+                            <span class="badge">PREMIUM SERVICE</span>
+                            <h3>Paint Correction</h3>
                             <p class="subtitle">
-                                Complete in &amp; out treatment — every interior surface scrubbed, every exterior
-                                surface perfected.
+                                Restore your vehicle's paint to a flawless, mirror-like finish.
                             </p>
-                            <div class="card-pricing-row">
-                                <span class="price-pill">S <strong>&#8377;3,999</strong></span>
-                                <span class="price-pill">M <strong>&#8377;3,999</strong></span>
-                                <span class="price-pill">L <strong>&#8377;4,999</strong></span>
-                                <span class="price-pill">XL <strong>&#8377;5,999</strong></span>
-                            </div>
-                            <div class="card-duration">⏱ &nbsp;3 – 4 Hours</div>
+
                             <div class="card-front-hint">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                     stroke-linecap="round" stroke-linejoin="round">
@@ -4467,7 +4487,7 @@
                             </div>
                         </div>
                         <div class="card-front-bottom">
-                            <img class="card-front-img" src="service_lambo_yellow_1774953173938.png" alt="Lamborghini">
+                            <img class="card-front-img" src="service_lambo_yellow_1774953173938.png" alt="Lamborghini" loading="lazy" decoding="async">
                         </div>
                     </div>
 
@@ -4475,14 +4495,14 @@
                         <div class="card-back-top">
                             <div class="card-back-title">What's Included</div>
                             <ul class="feature-list">
-                                <li>Everything in Express Detailing</li>
-                                <li>Door Panels &amp; Center Console Scrubbed</li>
-                                <li>Dashboard &amp; Steering Wheel Deep Cleaned</li>
-                                <li>Cup Holders Thoroughly Cleaned</li>
-                                <li>All Interior Surfaces Scrubbed Down</li>
+                                <li>Painting Services</li>
+                                <li>Paint Correction</li>
                             </ul>
+                            <p
+                                style="color: #D4AF37; font-size: 0.75rem; font-family: 'Orbitron', sans-serif; margin-top: 15px; font-weight: 700; text-align: left;">
+                                For quotes please contact +91-7868025790</p>
                         </div>
-                        <a href="#book" class="btn-service-book" data-package="full">Book This Package</a>
+                        <a href="tel:+917868025790" class="btn-service-book">Call For Quotes</a>
                     </div>
 
                 </div>
@@ -4495,19 +4515,12 @@
 
                     <div class="card-front">
                         <div class="card-front-top">
-                            <span class="badge">STARTING AT &#8377; 4,999</span>
-                            <h3>Deep Decon</h3>
+                            <span class="badge">STARTING AT &#8377; 2,999</span>
+                            <h3>Detailing Maintenance</h3>
                             <p class="subtitle">
-                                Full decontamination in &amp; out — clay bar, iron &amp; tar treatment with leather
-                                conditioning.
+                                All the premium detailing packages available to keep your car pristine.
                             </p>
-                            <div class="card-pricing-row">
-                                <span class="price-pill">S <strong>&#8377;4,999</strong></span>
-                                <span class="price-pill">M <strong>&#8377;4,999</strong></span>
-                                <span class="price-pill">L <strong>&#8377;5,999</strong></span>
-                                <span class="price-pill">XL <strong>&#8377;7,999</strong></span>
-                            </div>
-                            <div class="card-duration">⏱ &nbsp;4 – 5 Hours</div>
+
                             <div class="card-front-hint">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                     stroke-linecap="round" stroke-linejoin="round">
@@ -4521,7 +4534,7 @@
                             </div>
                         </div>
                         <div class="card-front-bottom">
-                            <img class="card-front-img" src="service_audi_orange_1774953231641.png" alt="Audi">
+                            <img class="card-front-img" src="service_audi_orange_1774953231641.png" alt="Audi" loading="lazy" decoding="async">
                         </div>
                     </div>
 
@@ -4529,14 +4542,15 @@
                         <div class="card-back-top">
                             <div class="card-back-title">What's Included</div>
                             <ul class="feature-list">
-                                <li>Everything in Full Detail</li>
-                                <li>Paint Decontamination (Claybar &amp; Iron Treatment)</li>
-                                <li>Water Spots Removal on Exterior Body</li>
-                                <li>Exterior Body Tar Remover</li>
-                                <li>Leather Seats Conditioning</li>
+                                <li>Express Detailing</li>
+                                <li>Full Detail</li>
+                                <li>Decon Detail</li>
                             </ul>
+                            <p
+                                style="color: #D4AF37; font-size: 0.75rem; font-family: 'Orbitron', sans-serif; margin-top: 15px; font-weight: 700; text-align: left;">
+                                For quotes please contact +91-7868025790</p>
                         </div>
-                        <a href="#book" class="btn-service-book" data-package="decon">Book This Package</a>
+                        <a href="#book" class="btn-service-book" data-package="maintenance">Book This Package</a>
                     </div>
 
                 </div>
@@ -4559,7 +4573,7 @@
         <div class="process-header">
             <h2 class="gsap-reveal">From Desire to Drive:<br></h2>
             <div class="process-header-right gsap-reveal">
-                <p>Turning your dream of driving a luxury car into reality has never been this effortless - just follow
+                <p>Turning your dream of driving a luxury car into reality has never been this effortless — just follow
                     these
                     easy steps and hit the road in style.</p>
                 <a href="#contact" class="process-link">Take The First Step</a>
@@ -4592,11 +4606,11 @@
 
         <div class="process-content gsap-reveal">
             <div class="process-image-container">
-                <img src="carfit.png" alt="Book Online" class="process-image active" data-step="0">
-                <img src="service_ferrari_red_1774953144261.png" alt="We Arrive" class="process-image" data-step="1">
-                <img src="service_bugatti_blue_1774953400000_1774953291278.png" alt="We Transform" class="process-image"
+                <img loading="lazy" decoding="async" src="carfit.png" alt="Book Online" class="process-image active" data-step="0">
+                <img loading="lazy" decoding="async" src="service_ferrari_red_1774953144261.png" alt="We Arrive" class="process-image" data-step="1">
+                <img loading="lazy" decoding="async" src="service_bugatti_blue_1774953400000_1774953291278.png" alt="We Transform" class="process-image"
                     data-step="2">
-                <img src="service_merc_black_1774953400000_1774953260285.png" alt="Drive Away" class="process-image"
+                <img loading="lazy" decoding="async" src="service_merc_black_1774953400000_1774953260285.png" alt="Drive Away" class="process-image"
                     data-step="3">
 
                 <div class="process-overlay-content">
@@ -4634,37 +4648,37 @@
 
             <div class="mobile-horizontal-scroll" id="mobileGalleryScroll">
                 <div class="mobile-gallery-item" data-category="detailing">
-                    <img src="car2.png" alt="Detailing Excellence">
+                    <img loading="lazy" decoding="async" src="car2.png" alt="Detailing Excellence">
                     <div class="gallery-item-info">
                         <span class="gallery-item-category">Detailing</span>
                     </div>
                 </div>
                 <div class="mobile-gallery-item" data-category="detailing">
-                    <img src="service_ferrari_red_1774953144261.png" alt="Ferrari Transformation">
+                    <img loading="lazy" decoding="async" src="service_ferrari_red_1774953144261.png" alt="Ferrari Transformation">
                     <div class="gallery-item-info">
                         <span class="gallery-item-category">Detailing</span>
                     </div>
                 </div>
                 <div class="mobile-gallery-item" data-category="ppf">
-                    <img src="service_bugatti_blue_1774953400000_1774953291278.png" alt="PPF Protection">
+                    <img loading="lazy" decoding="async" src="service_bugatti_blue_1774953400000_1774953291278.png" alt="PPF Protection">
                     <div class="gallery-item-info">
                         <span class="gallery-item-category">PPF</span>
                     </div>
                 </div>
                 <div class="mobile-gallery-item" data-category="ceramic">
-                    <img src="service_koenigsegg_white_1774953200395.png" alt="Ceramic Gloss">
+                    <img loading="lazy" decoding="async" src="service_koenigsegg_white_1774953200395.png" alt="Ceramic Gloss">
                     <div class="gallery-item-info">
                         <span class="gallery-item-category">Ceramic</span>
                     </div>
                 </div>
                 <div class="mobile-gallery-item" data-category="ceramic">
-                    <img src="car gold.png" alt="Golden Finish">
+                    <img loading="lazy" decoding="async" src="car gold.png" alt="Golden Finish">
                     <div class="gallery-item-info">
                         <span class="gallery-item-category">Ceramic</span>
                     </div>
                 </div>
                 <div class="mobile-gallery-item" data-category="detailing">
-                    <img src="hero_car.png" alt="Luxury Interior">
+                    <img loading="lazy" decoding="async" src="hero_car.png" alt="Luxury Interior">
                     <div class="gallery-item-info">
                         <span class="gallery-item-category">Detailing</span>
                     </div>
@@ -4697,14 +4711,17 @@
             transition: transform 0.3s ease;
             display: block;
         }
+
         .brand-pill:hover .brand-img {
             transform: scale(1.1);
         }
+
         .brand-pill {
-            gap: 12px; 
+            gap: 12px;
             padding: 12px 24px;
             box-sizing: border-box;
         }
+
         @media (max-width: 900px) {
             .brand-img {
                 height: 38px;
@@ -4712,6 +4729,7 @@
                 min-width: 38px;
                 min-height: 38px;
             }
+
             .brand-pill {
                 padding: 10px !important;
             }
@@ -4726,21 +4744,21 @@
             <!-- The track contains 2 identical sets of brands so it loops seamlessly -->
             <div class="marquee-track">
                 <!-- Set 1 -->
-                <div class="brand-pill"><img src="stek_logo.png" alt="STEK" class="brand-img"></div>
-                <div class="brand-pill"><img src="carpro_logo.png" alt="CARPRO" class="brand-img"></div>
-                <div class="brand-pill"><img src="koch_chemie_logo.png" alt="KOCH CHEMIE" class="brand-img"></div>
-                <div class="brand-pill"><img src="prismax_logo.png" alt="PRISMAX" class="brand-img"></div>
-                <div class="brand-pill"><img src="vonixx_logo.png" alt="VONIXX" class="brand-img"></div>
-                <div class="brand-pill"><img src="vintex_logo.png" alt="VINTEX" class="brand-img"></div>
-                <div class="brand-pill"><img src="rupes_logo.png" alt="RUPES" class="brand-img"></div>
+                <div class="brand-pill"><img loading="lazy" decoding="async" src="stek_logo.png" alt="STEK" class="brand-img"></div>
+                <div class="brand-pill"><img loading="lazy" decoding="async" src="carpro_logo.png" alt="CARPRO" class="brand-img"></div>
+                <div class="brand-pill"><img loading="lazy" decoding="async" src="koch_chemie_logo.png" alt="KOCH CHEMIE" class="brand-img"></div>
+                <div class="brand-pill"><img loading="lazy" decoding="async" src="prismax_logo.png" alt="PRISMAX" class="brand-img"></div>
+                <div class="brand-pill"><img loading="lazy" decoding="async" src="vonixx_logo.png" alt="VONIXX" class="brand-img"></div>
+                <div class="brand-pill"><img loading="lazy" decoding="async" src="vintex_logo.png" alt="VINTEX" class="brand-img"></div>
+                <div class="brand-pill"><img loading="lazy" decoding="async" src="rupes_logo.png" alt="RUPES" class="brand-img"></div>
                 <!-- Set 2 (Duplicate for infinite loop) -->
-                <div class="brand-pill"><img src="stek_logo.png" alt="STEK" class="brand-img"></div>
-                <div class="brand-pill"><img src="carpro_logo.png" alt="CARPRO" class="brand-img"></div>
-                <div class="brand-pill"><img src="koch_chemie_logo.png" alt="KOCH CHEMIE" class="brand-img"></div>
-                <div class="brand-pill"><img src="prismax_logo.png" alt="PRISMAX" class="brand-img"></div>
-                <div class="brand-pill"><img src="vonixx_logo.png" alt="VONIXX" class="brand-img"></div>
-                <div class="brand-pill"><img src="vintex_logo.png" alt="VINTEX" class="brand-img"></div>
-                <div class="brand-pill"><img src="rupes_logo.png" alt="RUPES" class="brand-img"></div>
+                <div class="brand-pill"><img loading="lazy" decoding="async" src="stek_logo.png" alt="STEK" class="brand-img"></div>
+                <div class="brand-pill"><img loading="lazy" decoding="async" src="carpro_logo.png" alt="CARPRO" class="brand-img"></div>
+                <div class="brand-pill"><img loading="lazy" decoding="async" src="koch_chemie_logo.png" alt="KOCH CHEMIE" class="brand-img"></div>
+                <div class="brand-pill"><img loading="lazy" decoding="async" src="prismax_logo.png" alt="PRISMAX" class="brand-img"></div>
+                <div class="brand-pill"><img loading="lazy" decoding="async" src="vonixx_logo.png" alt="VONIXX" class="brand-img"></div>
+                <div class="brand-pill"><img loading="lazy" decoding="async" src="vintex_logo.png" alt="VINTEX" class="brand-img"></div>
+                <div class="brand-pill"><img loading="lazy" decoding="async" src="rupes_logo.png" alt="RUPES" class="brand-img"></div>
             </div>
         </div>
     </section>
@@ -4804,14 +4822,14 @@
             <div class="about-stats">
                 <div class="stat-item">
                     <span class="stat-num">500+</span>
-                    <span class="stat-label">Exotics Protected</span>
+                    <span class="stat-label">Vehicles Detailed</span>
                 </div>
                 <div class="stat-item">
                     <span class="stat-num">100%</span>
                     <span class="stat-label">Precision Finish</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-num">15+</span>
+                    <span class="stat-num">3+</span>
                     <span class="stat-label">Years of Craft</span>
                 </div>
             </div>
@@ -4922,9 +4940,9 @@
                             <label for="bf-package">Service Package</label>
                             <select id="bf-package">
                                 <option value="" disabled selected>Select a package…</option>
-                                <option value="express">Express Detailing – from ₹2,999</option>
-                                <option value="full">Full Detail (In/Out) – from ₹3,999</option>
-                                <option value="decon">Deep Decontamination (In/Out) – from ₹4,999</option>
+                                <option value="protection">Paint Protection</option>
+                                <option value="correction">Paint Correction</option>
+                                <option value="maintenance">Detailing Maintenance (from ₹2,999)</option>
                             </select>
                         </div>
                     </div>
@@ -5043,8 +5061,7 @@
         <div class="footer-grid">
             <!-- Brand Info -->
             <div class="footer-brand">
-                <span class="footer-logo"><img
-                        src="https://res.cloudinary.com/drlg1t6pk/image/upload/v1774865270/logo_ilq8wl.png"
+                <span class="footer-logo"><img loading="lazy" decoding="async" src="https://res.cloudinary.com/drlg1t6pk/image/upload/v1774865270/logo_ilq8wl.png"
                         alt="LuxDrive Logo"></span>
                 <p class="footer-motto">Luxury lies not in the car, but in how the moment endures.</p>
             </div>
@@ -5125,7 +5142,7 @@
         </div>
 
         <div class="footer-bottom">
-            <p>Copyright © 2025 LuxDrive— All Right Reserved</p>
+            <p>Copyright © 2025 LuxDrive — All Rights Reserved</p>
             <div class="footer-policies">
                 <a href="#">Privacy Policy</a>
             </div>
@@ -5165,6 +5182,10 @@
 
         // GSAP animations
         gsap.registerPlugin(ScrollTrigger);
+        // ── GSAP GLOBAL PERFORMANCE DEFAULTS ──
+        gsap.config({ force3D: true, nullTargetWarn: false });
+        ScrollTrigger.config({ limitCallbacks: true, syncInterval: 999 });
+        ScrollTrigger.clearScrollMemory("manual");
 
         // Hero text entrance
         gsap.from(".hero-content", {
@@ -5561,18 +5582,22 @@
                 // Ignore elements inside Hero, Footer or specific excluded types
                 if (el.closest("#home") || el.closest(".main-footer") || el.closest(".booking-section")) return;
 
-                const direction = (i % 2 === 0) ? -40 : 40; // Subtler X offset for full visibility
+                // On mobile, use subtle vertical movement instead of horizontal to avoid jitter
+                const yOffset = 25; 
 
                 gsap.from(el, {
-                    x: direction,
+                    y: yOffset,
                     opacity: 0,
-                    duration: 0.6, // Slightly faster for responsiveness
+                    duration: 0.5,
                     ease: "power2.out",
+                    force3D: true,
                     scrollTrigger: {
                         trigger: el,
-                        start: "top 95%", // Starts as soon as it nears the screen
+                        start: "top 95%",
                         end: "bottom 5%",
-                        toggleActions: "play reverse play reverse"
+                        toggleActions: "play reverse play reverse",
+                        fastScrollEnd: true,
+                        preventOverlaps: true
                     }
                 });
             });
@@ -5584,7 +5609,11 @@
         //   → Plays on scroll-down, resets when scroll-back so it replays
         // ═══════════════════════════════════════════════════════
 
-        const ST = { toggleActions: "restart none restart reset" };
+        const ST = {
+            toggleActions: "restart none restart reset",
+            fastScrollEnd: true,
+            preventOverlaps: true
+        };
 
         // ── 1. NAVBAR — slide down from top on load ──
         gsap.from(".navbar", {
@@ -5950,91 +5979,35 @@
         // ── NAVBAR SCROLL LOGIC ──
         const navbar = document.querySelector('.navbar');
         const formSection = document.querySelector('.booking-section');
+        let isScrolling = false;
 
         window.addEventListener('scroll', () => {
-            const scrollBottom = window.scrollY + window.innerHeight;
-            const formTop = formSection ? formSection.offsetTop + 100 : Infinity;
-            const isMobile = window.innerWidth <= 900;
+            if (!isScrolling) {
+                window.requestAnimationFrame(() => {
+                    const scrollY = window.scrollY;
+                    const scrollBottom = scrollY + window.innerHeight;
+                    const formTop = formSection ? formSection.offsetTop + 100 : Infinity;
+                    const isMobile = window.innerWidth <= 900;
 
-            if (window.scrollY > 80) {
-                navbar.classList.add('scrolled');
+                    if (scrollY > 80) {
+                        navbar.classList.add('scrolled');
 
-                // On mobile, don't hide the navbar at the bottom, just keep it floating
-                if (scrollBottom >= formTop && !isMobile) {
-                    navbar.classList.add('hide-bottom');
-                } else {
-                    navbar.classList.remove('hide-bottom');
-                }
-            } else {
-                navbar.classList.remove('scrolled');
-                navbar.classList.remove('hide-bottom');
+                        if (scrollBottom >= formTop && !isMobile) {
+                            navbar.classList.add('hide-bottom');
+                        } else {
+                            navbar.classList.remove('hide-bottom');
+                        }
+                    } else {
+                        navbar.classList.remove('scrolled');
+                        navbar.classList.remove('hide-bottom');
+                    }
+                    isScrolling = false;
+                });
+                isScrolling = true;
             }
-        });
+        }, { passive: true });
 
-        // ── TOAST NOTIFICATION ENGINE ──
-        const toastData = {
-            areas: ["T. Nagar", "Adyar", "Anna Nagar", "Velachery", "Nungambakkam", "Porur", "Tambaram", "OMR", "ECR", "Perambur", "Egmore", "Chrompet"],
-            cars: ["BMW 7 Series", "Audi Q8", "Mercedes-Benz S-Class", "Porsche Taycan", "Lamborghini Urus", "Land Rover Defender", "Volvo XC90", "Jaguar F-Type", "Mercedes G-Wagon"],
-            services: ["Ceramic Coating", "Full Body Detail", "PPF Wrap", "Paint Correction", "Interior Spa", "Glass Coating"],
-            names: ["Rajesh", "Vikram", "Anirudh", "Arjun", "Priya", "Kavita", "Sanjay", "Raghav", "Vikram", "Meera"],
-            quotes: ["Best detailing service in CBE!", "My car looks brand new.", "Incredible attention to detail.", "Professional and on time.", "Worth every rupee.", "The finish is like glass!"]
-        };
-
-        function generateToast() {
-            const type = Math.floor(Math.random() * 3); // 0: Booking, 1: Enquiry, 2: Review
-            const area = toastData.areas[Math.floor(Math.random() * toastData.areas.length)];
-            const car = toastData.cars[Math.floor(Math.random() * toastData.cars.length)];
-            const service = toastData.services[Math.floor(Math.random() * toastData.services.length)];
-            const name = toastData.names[Math.floor(Math.random() * toastData.names.length)];
-            const quote = toastData.quotes[Math.floor(Math.random() * toastData.quotes.length)];
-
-            let title, msg, icon;
-            if (type === 0) {
-                title = "New Booking";
-                msg = `${service} service for a ${car}`;
-                icon = `<svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>`;
-            } else if (type === 1) {
-                title = "Inquiry Received";
-                msg = `Interest in ${service} for a ${car}`;
-                icon = `<svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>`;
-            } else {
-                title = "Recent Review";
-                msg = `⭐ ⭐ ⭐ ⭐ ⭐ "${quote}" — ${name}`;
-                icon = `<svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.518 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.921-.755 1.688-1.54 1.118l-3.976-2.888a1 1 0 00-1.175 0l-3.976 2.888c-.784.57-1.838-.197-1.539-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.382-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>`;
-            }
-
-            const toast = document.createElement("div");
-            toast.className = "toast-card";
-            toast.innerHTML = `
-        <div class="toast-icon">${icon}</div>
-        <div class="toast-content">
-          <div class="toast-title">${title}</div>
-          <div class="toast-msg">${msg}</div>
-          <div class="toast-area">${area}, Chennai</div>
-        </div>
-      `;
-
-            const container = document.getElementById("toast-notification-container");
-            container.appendChild(toast);
-
-            // Animation: Slide-in
-            requestAnimationFrame(() => {
-                toast.classList.add("active");
-            });
-
-            // Auto-dismiss after 5 seconds
-            setTimeout(() => {
-                toast.classList.remove("active");
-                setTimeout(() => toast.remove(), 600); // Wait f         setTimeout(() => toast.remove(), 600); // Wait f         setTimeout(() => toast.remove(), 600); // Wait f         setTimeout(() => toast.remove(), 600); // Wait for transition
-            }, 5000);
-        }
-
-        // Interval: Every 10 seconds
-        setInterval(generateToast, 10000);
-        // Show first toast after 3 seconds
-        setTimeout(generateToast, 3000);
-
-    </script>
+        </script>
 
     <!-- React Component Implementation -->
     <script type="text/babel">
@@ -6188,7 +6161,7 @@
             'renovation_car.png',
             'car gold.png'
         ].map(img => (
-            <img src={img} className="card-image" alt="Gallery Car" />
+            <img loading="lazy" decoding="async" src={img} className="card-image" alt="Gallery Car" />
         ));
 
         if (window.innerWidth > 1024) {
@@ -6216,16 +6189,14 @@
 
             // Map data-package values to estimate modal service options
             const packageToService = {
-                'express': 'Express Detailing',
-                'full': 'Full Detail',
-                'decon': 'Deep Decontamination',
-                'ceramic': 'Ceramic Coating',
-                'ppf': 'PPF',
-                'paint': 'Paint Correction'
+                'protection': 'Paint Protection',
+                'correction': 'Paint Correction',
+                'maintenance': 'Detailing Maintenance'
             };
 
             buttons.forEach(button => {
                 button.addEventListener('click', function (e) {
+                    if (this.hasAttribute('href') && this.getAttribute('href').startsWith('tel:')) return;
                     e.preventDefault();
                     e.stopPropagation(); // Stop event from bubbling to card
 
@@ -6306,23 +6277,13 @@
                         <label for="estService">Service Type *</label>
                         <select id="estService" class="estimate-form-control" required>
                             <option value="">Select a service</option>
-                            <option value="Express Detailing">Express Detailing</option>
-                            <option value="Full Detail">Full Detail (In/Out)</option>
-                            <option value="Deep Decontamination">Deep Decontamination (In/Out)</option>
+                            <option value="Paint Protection">Paint Protection</option>
+                            <option value="Paint Correction">Paint Correction</option>
+                            <option value="Detailing Maintenance">Detailing Maintenance</option>
                         </select>
                         <div class="estimate-form-error">Please select a service type.</div>
                     </div>
-                    <div class="estimate-form-group">
-                        <label for="estBudget">Budget Range *</label>
-                        <select id="estBudget" class="estimate-form-control" required>
-                            <option value="">Select a range</option>
-                            <option value="₹10k - ₹30k">₹10,000 - ₹30,000</option>
-                            <option value="₹30k - ₹50k">₹30,000 - ₹50,000</option>
-                            <option value="₹50k - ₹1L">₹50,000 - ₹1,00,000</option>
-                            <option value="₹1L+">Above ₹1,00,000</option>
-                        </select>
-                        <div class="estimate-form-error">Please select a budget range.</div>
-                    </div>
+
                     <div class="estimate-form-group">
                         <label>Add-Ons (Optional)</label>
                         <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px;">
@@ -6421,7 +6382,13 @@
 
             // Bind trigger buttons
             heroButtons.forEach(btn => {
-                btn.addEventListener('click', openModal);
+                btn.addEventListener('click', (e) => {
+                    // Only open modal if it's the Quick Estimate button (href="#book")
+                    // If it's the View Packages button (href="#services"), let it scroll
+                    if (btn.getAttribute('href') === '#book') {
+                        openModal(e);
+                    }
+                });
             });
 
             closeBtn.addEventListener('click', closeModal);
@@ -6501,12 +6468,11 @@
                 const brand = document.getElementById('estBrand').value;
                 const model = document.getElementById('estModel').value.trim();
                 const service = document.getElementById('estService').value;
-                const budget = document.getElementById('estBudget').value;
                 const notes = document.getElementById('estNotes').value.trim();
 
                 const selectedAddons = [...document.querySelectorAll('input[name="addon"]:checked')].map(cb => cb.value);
 
-                let message = `*New Quick Estimate Request*%0A%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Car:* ${brand} ${model}%0A*Service:* ${service}%0A*Budget:* ${budget}`;
+                let message = `*New Quick Estimate Request*%0A%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Car:* ${brand} ${model}%0A*Service:* ${service}`;
                 if (selectedAddons.length) {
                     message += `%0A*Add-Ons:* ${selectedAddons.join(', ')}`;
                 }
