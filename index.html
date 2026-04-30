@@ -65,7 +65,7 @@
         }
 
         html {
-            scroll-behavior: smooth;
+            /* Removed scroll-behavior: smooth to prevent conflicts with ScrollTrigger */
         }
 
         body {
@@ -93,7 +93,7 @@
             z-index: 999;
             transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.4s ease, backdrop-filter 0.4s ease, border 0.4s ease, padding 0.4s ease;
             will-change: transform, background;
-            transform: translate3d(0,0,0);
+            transform: translate3d(0, 0, 0);
         }
 
         .navbar.scrolled {
@@ -225,7 +225,7 @@
             object-position: center 50%;
             z-index: 0;
             will-change: transform;
-            transform: translate3d(0,0,0);
+            transform: translate3d(0, 0, 0);
         }
 
         /* Cinematic dark overlay */
@@ -511,8 +511,9 @@
             border: none;
             padding: 0;
             will-change: transform;
-            transform: translate3d(0,0,0);
+            transform: translate3d(0, 0, 0);
             contain: layout;
+            -webkit-tap-highlight-color: transparent;
         }
 
         /* Inner container that actually flips */
@@ -1060,7 +1061,6 @@
                 display: flex;
             }
 
-            html,
             body {
                 width: 100vw;
                 max-width: 100%;
@@ -1074,6 +1074,7 @@
                 padding: 20px;
                 scroll-snap-type: x mandatory;
                 -webkit-overflow-scrolling: touch;
+                touch-action: pan-x;
                 scrollbar-width: none;
                 /* Hide scrollbar Firefox */
             }
@@ -1108,6 +1109,20 @@
                 padding: 4px 6px !important;
             }
 
+            .btn-service-book {
+                padding: 10px 14px !important;
+                font-size: 0.68rem !important;
+                margin-top: 12px !important;
+                border-radius: 12px !important;
+                background: linear-gradient(90deg, #D4AF37, #F5D061, #E6C27A) !important;
+                box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3) !important;
+                border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            }
+
+            .btn-service-book::after {
+                font-size: 0.8rem !important;
+            }
+
             font-size: clamp(1.8rem, 8vw, 2.4rem);
             line-height: 1.1;
             word-break: keep-all;
@@ -1134,7 +1149,7 @@
             width: 100%;
             max-width: 100vw;
             box-sizing: border-box;
-            overflow-x: hidden;
+            overflow-x: clip;
             padding: 80px 6% !important;
         }
 
@@ -1627,6 +1642,14 @@
             align-items: flex-start;
         }
 
+        @media (max-width: 1024px) {
+            .painting-left,
+            .painting-right {
+                margin-top: 0;
+                min-width: 280px;
+            }
+        }
+
         .painting-item {
             display: flex;
             align-items: flex-start;
@@ -2074,7 +2097,7 @@
             border-top: none;
             z-index: 100;
             will-change: transform;
-            transform: translate3d(0,0,0);
+            transform: translate3d(0, 0, 0);
         }
 
         .footer-grid {
@@ -4267,7 +4290,8 @@
 
     <!-- ─── NAVBAR ─── -->
     <header class="navbar">
-        <a href="#" class="logo"><img loading="lazy" decoding="async" src="https://res.cloudinary.com/drlg1t6pk/image/upload/v1774865270/logo_ilq8wl.png"
+        <a href="#" class="logo"><img loading="lazy" decoding="async"
+                src="https://res.cloudinary.com/drlg1t6pk/image/upload/v1774865270/logo_ilq8wl.png"
                 alt="LuxDrive Logo"></a>
 
         <nav>
@@ -4439,7 +4463,8 @@
                             </div>
                         </div>
                         <div class="card-front-bottom">
-                            <img class="card-front-img" src="service_ferrari_red_1774953144261.png" alt="Ferrari" loading="lazy" decoding="async">
+                            <img class="card-front-img" src="service_ferrari_red_1774953144261.png" alt="Ferrari"
+                                loading="lazy" decoding="async">
                         </div>
                     </div>
 
@@ -4455,7 +4480,7 @@
                                 style="color: #D4AF37; font-size: 0.75rem; font-family: 'Orbitron', sans-serif; margin-top: 15px; font-weight: 700; text-align: left;">
                                 For quotes please contact +91-7868025790</p>
                         </div>
-                        <a href="tel:+917868025790" class="btn-service-book">Call For Quotes</a>
+                        <a href="#estimate" class="btn-service-book" data-package="protection">Get A Quote</a>
                     </div>
 
                 </div>
@@ -4487,7 +4512,8 @@
                             </div>
                         </div>
                         <div class="card-front-bottom">
-                            <img class="card-front-img" src="service_lambo_yellow_1774953173938.png" alt="Lamborghini" loading="lazy" decoding="async">
+                            <img class="card-front-img" src="service_lambo_yellow_1774953173938.png" alt="Lamborghini"
+                                loading="lazy" decoding="async">
                         </div>
                     </div>
 
@@ -4502,7 +4528,7 @@
                                 style="color: #D4AF37; font-size: 0.75rem; font-family: 'Orbitron', sans-serif; margin-top: 15px; font-weight: 700; text-align: left;">
                                 For quotes please contact +91-7868025790</p>
                         </div>
-                        <a href="tel:+917868025790" class="btn-service-book">Call For Quotes</a>
+                        <a href="#estimate" class="btn-service-book" data-package="correction">Get A Quote</a>
                     </div>
 
                 </div>
@@ -4534,7 +4560,8 @@
                             </div>
                         </div>
                         <div class="card-front-bottom">
-                            <img class="card-front-img" src="service_audi_orange_1774953231641.png" alt="Audi" loading="lazy" decoding="async">
+                            <img class="card-front-img" src="service_audi_orange_1774953231641.png" alt="Audi"
+                                loading="lazy" decoding="async">
                         </div>
                     </div>
 
@@ -4550,7 +4577,7 @@
                                 style="color: #D4AF37; font-size: 0.75rem; font-family: 'Orbitron', sans-serif; margin-top: 15px; font-weight: 700; text-align: left;">
                                 For quotes please contact +91-7868025790</p>
                         </div>
-                        <a href="#book" class="btn-service-book" data-package="maintenance">Book This Package</a>
+                        <a href="#estimate" class="btn-service-book" data-package="maintenance">Get A Quote</a>
                     </div>
 
                 </div>
@@ -4606,12 +4633,14 @@
 
         <div class="process-content gsap-reveal">
             <div class="process-image-container">
-                <img loading="lazy" decoding="async" src="carfit.png" alt="Book Online" class="process-image active" data-step="0">
-                <img loading="lazy" decoding="async" src="service_ferrari_red_1774953144261.png" alt="We Arrive" class="process-image" data-step="1">
-                <img loading="lazy" decoding="async" src="service_bugatti_blue_1774953400000_1774953291278.png" alt="We Transform" class="process-image"
-                    data-step="2">
-                <img loading="lazy" decoding="async" src="service_merc_black_1774953400000_1774953260285.png" alt="Drive Away" class="process-image"
-                    data-step="3">
+                <img loading="lazy" decoding="async" src="carfit.png" alt="Book Online" class="process-image active"
+                    data-step="0">
+                <img loading="lazy" decoding="async" src="service_ferrari_red_1774953144261.png" alt="We Arrive"
+                    class="process-image" data-step="1">
+                <img loading="lazy" decoding="async" src="service_bugatti_blue_1774953400000_1774953291278.png"
+                    alt="We Transform" class="process-image" data-step="2">
+                <img loading="lazy" decoding="async" src="service_merc_black_1774953400000_1774953260285.png"
+                    alt="Drive Away" class="process-image" data-step="3">
 
                 <div class="process-overlay-content">
                     <h3 class="process-overlay-title">Book Online</h3>
@@ -4635,7 +4664,6 @@
             <div id="masonryContainer" class="masonry-list"></div>
             <div id="stack-gallery-root"></div>
         </div>
-        <button class="view-more-btn" id="galleryViewMore">View More</button>
 
         <!-- Mobile Horizontal Gallery -->
         <div class="mobile-gallery-container">
@@ -4654,19 +4682,22 @@
                     </div>
                 </div>
                 <div class="mobile-gallery-item" data-category="detailing">
-                    <img loading="lazy" decoding="async" src="service_ferrari_red_1774953144261.png" alt="Ferrari Transformation">
+                    <img loading="lazy" decoding="async" src="service_ferrari_red_1774953144261.png"
+                        alt="Ferrari Transformation">
                     <div class="gallery-item-info">
                         <span class="gallery-item-category">Detailing</span>
                     </div>
                 </div>
                 <div class="mobile-gallery-item" data-category="ppf">
-                    <img loading="lazy" decoding="async" src="service_bugatti_blue_1774953400000_1774953291278.png" alt="PPF Protection">
+                    <img loading="lazy" decoding="async" src="service_bugatti_blue_1774953400000_1774953291278.png"
+                        alt="PPF Protection">
                     <div class="gallery-item-info">
                         <span class="gallery-item-category">PPF</span>
                     </div>
                 </div>
                 <div class="mobile-gallery-item" data-category="ceramic">
-                    <img loading="lazy" decoding="async" src="service_koenigsegg_white_1774953200395.png" alt="Ceramic Gloss">
+                    <img loading="lazy" decoding="async" src="service_koenigsegg_white_1774953200395.png"
+                        alt="Ceramic Gloss">
                     <div class="gallery-item-info">
                         <span class="gallery-item-category">Ceramic</span>
                     </div>
@@ -4744,21 +4775,35 @@
             <!-- The track contains 2 identical sets of brands so it loops seamlessly -->
             <div class="marquee-track">
                 <!-- Set 1 -->
-                <div class="brand-pill"><img loading="lazy" decoding="async" src="stek_logo.png" alt="STEK" class="brand-img"></div>
-                <div class="brand-pill"><img loading="lazy" decoding="async" src="carpro_logo.png" alt="CARPRO" class="brand-img"></div>
-                <div class="brand-pill"><img loading="lazy" decoding="async" src="koch_chemie_logo.png" alt="KOCH CHEMIE" class="brand-img"></div>
-                <div class="brand-pill"><img loading="lazy" decoding="async" src="prismax_logo.png" alt="PRISMAX" class="brand-img"></div>
-                <div class="brand-pill"><img loading="lazy" decoding="async" src="vonixx_logo.png" alt="VONIXX" class="brand-img"></div>
-                <div class="brand-pill"><img loading="lazy" decoding="async" src="vintex_logo.png" alt="VINTEX" class="brand-img"></div>
-                <div class="brand-pill"><img loading="lazy" decoding="async" src="rupes_logo.png" alt="RUPES" class="brand-img"></div>
+                <div class="brand-pill"><img loading="lazy" decoding="async" src="stek_logo.png" alt="STEK"
+                        class="brand-img"></div>
+                <div class="brand-pill"><img loading="lazy" decoding="async" src="carpro_logo.png" alt="CARPRO"
+                        class="brand-img"></div>
+                <div class="brand-pill"><img loading="lazy" decoding="async" src="koch_chemie_logo.png"
+                        alt="KOCH CHEMIE" class="brand-img"></div>
+                <div class="brand-pill"><img loading="lazy" decoding="async" src="prismax_logo.png" alt="PRISMAX"
+                        class="brand-img"></div>
+                <div class="brand-pill"><img loading="lazy" decoding="async" src="vonixx_logo.png" alt="VONIXX"
+                        class="brand-img"></div>
+                <div class="brand-pill"><img loading="lazy" decoding="async" src="vintex_logo.png" alt="VINTEX"
+                        class="brand-img"></div>
+                <div class="brand-pill"><img loading="lazy" decoding="async" src="rupes_logo.png" alt="RUPES"
+                        class="brand-img"></div>
                 <!-- Set 2 (Duplicate for infinite loop) -->
-                <div class="brand-pill"><img loading="lazy" decoding="async" src="stek_logo.png" alt="STEK" class="brand-img"></div>
-                <div class="brand-pill"><img loading="lazy" decoding="async" src="carpro_logo.png" alt="CARPRO" class="brand-img"></div>
-                <div class="brand-pill"><img loading="lazy" decoding="async" src="koch_chemie_logo.png" alt="KOCH CHEMIE" class="brand-img"></div>
-                <div class="brand-pill"><img loading="lazy" decoding="async" src="prismax_logo.png" alt="PRISMAX" class="brand-img"></div>
-                <div class="brand-pill"><img loading="lazy" decoding="async" src="vonixx_logo.png" alt="VONIXX" class="brand-img"></div>
-                <div class="brand-pill"><img loading="lazy" decoding="async" src="vintex_logo.png" alt="VINTEX" class="brand-img"></div>
-                <div class="brand-pill"><img loading="lazy" decoding="async" src="rupes_logo.png" alt="RUPES" class="brand-img"></div>
+                <div class="brand-pill"><img loading="lazy" decoding="async" src="stek_logo.png" alt="STEK"
+                        class="brand-img"></div>
+                <div class="brand-pill"><img loading="lazy" decoding="async" src="carpro_logo.png" alt="CARPRO"
+                        class="brand-img"></div>
+                <div class="brand-pill"><img loading="lazy" decoding="async" src="koch_chemie_logo.png"
+                        alt="KOCH CHEMIE" class="brand-img"></div>
+                <div class="brand-pill"><img loading="lazy" decoding="async" src="prismax_logo.png" alt="PRISMAX"
+                        class="brand-img"></div>
+                <div class="brand-pill"><img loading="lazy" decoding="async" src="vonixx_logo.png" alt="VONIXX"
+                        class="brand-img"></div>
+                <div class="brand-pill"><img loading="lazy" decoding="async" src="vintex_logo.png" alt="VINTEX"
+                        class="brand-img"></div>
+                <div class="brand-pill"><img loading="lazy" decoding="async" src="rupes_logo.png" alt="RUPES"
+                        class="brand-img"></div>
             </div>
         </div>
     </section>
@@ -4942,7 +4987,7 @@
                                 <option value="" disabled selected>Select a package…</option>
                                 <option value="protection">Paint Protection</option>
                                 <option value="correction">Paint Correction</option>
-                                <option value="maintenance">Detailing Maintenance (from ₹2,999)</option>
+                                <option value="maintenance">Detailing Maintenance</option>
                             </select>
                         </div>
                     </div>
@@ -5061,7 +5106,8 @@
         <div class="footer-grid">
             <!-- Brand Info -->
             <div class="footer-brand">
-                <span class="footer-logo"><img loading="lazy" decoding="async" src="https://res.cloudinary.com/drlg1t6pk/image/upload/v1774865270/logo_ilq8wl.png"
+                <span class="footer-logo"><img loading="lazy" decoding="async"
+                        src="https://res.cloudinary.com/drlg1t6pk/image/upload/v1774865270/logo_ilq8wl.png"
                         alt="LuxDrive Logo"></span>
                 <p class="footer-motto">Luxury lies not in the car, but in how the moment endures.</p>
             </div>
@@ -5184,7 +5230,7 @@
         gsap.registerPlugin(ScrollTrigger);
         // ── GSAP GLOBAL PERFORMANCE DEFAULTS ──
         gsap.config({ force3D: true, nullTargetWarn: false });
-        ScrollTrigger.config({ limitCallbacks: true, syncInterval: 999 });
+        ScrollTrigger.config({ limitCallbacks: true, syncInterval: 100 });
         ScrollTrigger.clearScrollMemory("manual");
 
         // Hero text entrance
@@ -5583,7 +5629,7 @@
                 if (el.closest("#home") || el.closest(".main-footer") || el.closest(".booking-section")) return;
 
                 // On mobile, use subtle vertical movement instead of horizontal to avoid jitter
-                const yOffset = 25; 
+                const yOffset = 25;
 
                 gsap.from(el, {
                     y: yOffset,
@@ -5610,9 +5656,9 @@
         // ═══════════════════════════════════════════════════════
 
         const ST = {
-            toggleActions: "restart none restart reset",
-            fastScrollEnd: true,
-            preventOverlaps: true
+            toggleActions: "play none none none",
+            fastScrollEnd: false,
+            preventOverlaps: false
         };
 
         // ── 1. NAVBAR — slide down from top on load ──
@@ -5811,7 +5857,9 @@
             });
         }
 
-        ScrollTrigger.refresh();
+        window.addEventListener('load', () => {
+            ScrollTrigger.refresh();
+        });
         // ══════════════════════════════════════════════════════
         // ── BOOKING FORM & PAYMENT MODAL LOGIC ──
         // Flow: Form Submit → Payment Modal → Confirm → API → Success
@@ -6007,7 +6055,7 @@
             }
         }, { passive: true });
 
-        </script>
+    </script>
 
     <!-- React Component Implementation -->
     <script type="text/babel">
@@ -6255,24 +6303,11 @@
                     </div>
                     <div class="estimate-form-group">
                         <label for="estBrand">Car Brand *</label>
-                        <select id="estBrand" class="estimate-form-control" required>
-                            <option value="">Select a brand</option>
-                            <option value="Audi">Audi</option>
-                            <option value="BMW">BMW</option>
-                            <option value="Mercedes-Benz">Mercedes-Benz</option>
-                            <option value="Porsche">Porsche</option>
-                            <option value="Lamborghini">Lamborghini</option>
-                            <option value="Land Rover">Land Rover</option>
-                            <option value="Other">Other Luxury Brand</option>
-                        </select>
-                        <div class="estimate-form-error">Please select a car brand.</div>
-                    </div>
-                    <div class="estimate-form-group">
-                        <label for="estModel">Car Model *</label>
-                        <input type="text" id="estModel" class="estimate-form-control" placeholder="e.g. Q8, 7 Series"
+                        <input type="text" id="estBrand" class="estimate-form-control" placeholder="e.g. Audi, BMW"
                             required>
-                        <div class="estimate-form-error">Please enter your car model.</div>
+                        <div class="estimate-form-error">Please enter a car brand.</div>
                     </div>
+
                     <div class="estimate-form-group">
                         <label for="estService">Service Type *</label>
                         <select id="estService" class="estimate-form-control" required>
@@ -6466,13 +6501,13 @@
                 const name = document.getElementById('estName').value.trim();
                 const phone = document.getElementById('estPhone').value.trim();
                 const brand = document.getElementById('estBrand').value;
-                const model = document.getElementById('estModel').value.trim();
+
                 const service = document.getElementById('estService').value;
                 const notes = document.getElementById('estNotes').value.trim();
 
                 const selectedAddons = [...document.querySelectorAll('input[name="addon"]:checked')].map(cb => cb.value);
 
-                let message = `*New Quick Estimate Request*%0A%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Car:* ${brand} ${model}%0A*Service:* ${service}`;
+                let message = `*New Quick Estimate Request*%0A%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Car:* ${brand}%0A*Service:* ${service}`;
                 if (selectedAddons.length) {
                     message += `%0A*Add-Ons:* ${selectedAddons.join(', ')}`;
                 }
@@ -6493,25 +6528,46 @@
             });
         });
         // ── SERVICE CARDS FLIP LOGIC ──
-        // Support for Hover (Desktop) and Click (Mobile/Desktop)
         document.querySelectorAll('.service-card').forEach(card => {
-            // Mouse enters: add flip
-            card.addEventListener('mouseenter', function () {
-                this.classList.add('flipped');
+            let startX, startY;
+
+            // Detect start of touch
+            card.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
+            }, { passive: true });
+
+            // Detect end of touch and verify if it's a "tap" (no significant movement)
+            card.addEventListener('touchend', (e) => {
+                const endX = e.changedTouches[0].clientX;
+                const endY = e.changedTouches[0].clientY;
+                const diffX = Math.abs(endX - startX);
+                const diffY = Math.abs(endY - startY);
+
+                // Threshold of 10px to distinguish tap from scroll/swipe
+                if (diffX < 10 && diffY < 10) {
+                    // Ignore if clicking internal links/buttons
+                    if (e.target.closest('a') || e.target.closest('button')) return;
+                    
+                    e.preventDefault(); // Prevent ghost click
+                    card.classList.toggle('flipped');
+                }
             });
 
-            // Mouse leaves: remove flip
-            card.addEventListener('mouseleave', function () {
-                this.classList.remove('flipped');
+            // Mouse-based flip for Desktop
+            card.addEventListener('mouseenter', () => {
+                if (window.innerWidth > 1024) card.classList.add('flipped');
+            });
+            card.addEventListener('mouseleave', () => {
+                if (window.innerWidth > 1024) card.classList.remove('flipped');
             });
 
-            // Click: toggle flip (useful for mobile and override on desktop)
+            // Fallback click for desktop mouse clicks
             card.addEventListener('click', function (e) {
-                // Ignore if clicking buttons/links
-                if (e.target.closest('a') || e.target.closest('button')) return;
-
-                // Toggle state
-                this.classList.toggle('flipped');
+                if (window.innerWidth > 1024) {
+                    if (e.target.closest('a') || e.target.closest('button')) return;
+                    this.classList.toggle('flipped');
+                }
             });
         });
 
