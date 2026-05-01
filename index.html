@@ -4812,24 +4812,46 @@
     <!-- ─── TESTIMONIALS ─── -->
     <section class="testimonials-section" id="testimonials">
         <h2 class="section-title">Client <span>Experiences</span></h2>
-        
-        <!-- Premium Review Widget Container -->
-        <div class="reviews-widget-wrap" style="max-width: 1200px; margin: 0 auto; padding: 20px;">
-            <p style="text-align: center; color: rgba(255,255,255,0.5); font-size: 0.9rem; margin-bottom: 20px;">
-                Verified Google Business Reviews — Synced Automatically
-            </p>
-            
-            <!-- 
-              INSTRUCTIONS FOR USER:
-              1. Go to Elfsight.com or Trustindex.io
-              2. Create a "Google Reviews Widget"
-              3. Copy the script code they give you
-              4. Paste it right below this comment:
-            -->
-            <div id="google-reviews-placeholder">
-                <!-- PASTE YOUR WIDGET CODE HERE -->
-                <div style="text-align: center; padding: 40px; background: rgba(255,255,255,0.02); border: 1px dashed rgba(212, 175, 55, 0.3); border-radius: 20px;">
-                    <span style="color: var(--magic-2); font-family: 'Orbitron', sans-serif;">Waiting for Review Widget Sync...</span>
+        <div class="testimonials-grid" id="testimonialGrid">
+            <!-- Testimonial 1 -->
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"Absolutely blown away by the PPF work on my Porsche 911. The attention to
+                        detail is
+                        unmatched, and the team was incredibly professional."</p>
+                    <div class="client-info">
+                        <span class="client-name">Raghav M.</span>
+                        <span class="client-car">Porsche 911 GT3</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonial 2 -->
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"Their ceramic coating made my Range Rover look better than the day I bought
+                        it. The
+                        hydrophobic effect is insane!"</p>
+                    <div class="client-info">
+                        <span class="client-name">Anita S.</span>
+                        <span class="client-car">Range Rover Autobiography</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonial 3 -->
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"The best detailing studio in the city, hands down. My Ferrari 488 looks
+                        flawless
+                        under every light. Truly premium service."</p>
+                    <div class="client-info">
+                        <span class="client-name">Vikram K.</span>
+                        <span class="client-car">Ferrari 488 Spider</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -4976,179 +4998,203 @@
                             <label for="bf-datetime">Preferred Date & Time</label>
                             <input type="datetime-local" id="bf-datetime" required />
                         </div>
-                    <div class="booking-form-row">
-                        <div class="booking-form-group full">
-                            <label for="bf-notes">Location / Notes</label>
-                            <textarea id="bf-notes" placeholder="Your address or any special instructions…"></textarea>
-                        </div>
-                    </div>
-
-                    <div class="booking-form-row">
-                        <div class="booking-form-group full">
-                            <label style="font-family: 'Orbitron', sans-serif; letter-spacing: 1px; color: var(--magic-2);">Select Payment Strategy</label>
-                            <div class="premium-payment-grid">
-                                <label class="payment-card">
-                                    <input type="radio" name="payment" value="GPay" style="display:none;" id="pay-gpay">
-                                    <div class="pay-inner" onclick="document.getElementById('pay-gpay').checked=true; updatePaySelection(this)">
-                                        <div class="pay-status-dot"></div>
-                                        <div class="pay-icon-wrap">
-                                            <!-- Official GPay/UPI Look -->
-                                            <div style="display: flex; align-items: center; gap: 4px;">
-                                                <svg viewBox="0 0 40 40" width="24" height="24">
-                                                    <path d="M19.5 20l5-5 5 5-5 5-5-5z" fill="#4285F4"/>
-                                                    <path d="M14.5 15l5 5-5 5-5-5 5-5z" fill="#34A853"/>
-                                                    <path d="M19.5 10l5 5-5 5-5-5 5-5z" fill="#FBBC05"/>
-                                                    <path d="M24.5 15l5 5-5 5-5-5 5-5z" fill="#EA4335"/>
-                                                </svg>
-                                            </div>
-                                        </div>
-                                        <div class="pay-content">
-                                            <span class="pay-title">GPay / UPI</span>
-                                            <span class="pay-sub">Digital Payment</span>
-                                        </div>
-                                    </div>
-                                </label>
-                                <label class="payment-card">
-                                    <input type="radio" name="payment" value="Cash on Delivery" style="display:none;" id="pay-cod">
-                                    <div class="pay-inner" onclick="document.getElementById('pay-cod').checked=true; updatePaySelection(this)">
-                                        <div class="pay-status-dot"></div>
-                                        <div class="pay-icon-wrap">
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                                <rect x="2" y="6" width="20" height="12" rx="2"/>
-                                                <circle cx="12" cy="12" r="3"/>
-                                                <path d="M18 12h.01M6 12h.01"/>
-                                            </svg>
-                                        </div>
-                                        <div class="pay-content">
-                                            <span class="pay-title">Cash</span>
-                                            <span class="pay-sub">Pay at Spot</span>
-                                        </div>
-                                    </div>
-                                </label>
+                        <div class="booking-form-row">
+                            <div class="booking-form-group full">
+                                <label for="bf-notes">Location / Notes</label>
+                                <textarea id="bf-notes"
+                                    placeholder="Your address or any special instructions…"></textarea>
                             </div>
                         </div>
-                    </div>
 
-                    <style>
-                        .premium-payment-grid {
-                            display: grid;
-                            grid-template-columns: 1fr 1fr;
-                            gap: 15px;
-                            margin-top: 15px;
-                        }
-                        .payment-card {
-                            display: block;
-                            cursor: pointer;
-                            perspective: 1000px;
-                        }
-                        .pay-inner {
-                            background: rgba(255, 255, 255, 0.03);
-                            border: 1px solid rgba(255, 255, 255, 0.08);
-                            border-radius: 16px;
-                            padding: 20px 15px;
-                            display: flex;
-                            align-items: center;
-                            gap: 12px;
-                            position: relative;
-                            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-                            overflow: hidden;
-                        }
-                        .pay-inner::before {
-                            content: '';
-                            position: absolute;
-                            inset: 0;
-                            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), transparent);
-                            opacity: 0;
-                            transition: opacity 0.3s;
-                        }
-                        .pay-icon-wrap {
-                            width: 42px;
-                            height: 42px;
-                            background: rgba(255, 255, 255, 0.05);
-                            border-radius: 10px;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            color: rgba(255, 255, 255, 0.7);
-                            transition: all 0.3s;
-                        }
-                        .pay-icon-wrap svg {
-                            width: 24px;
-                            height: 24px;
-                        }
-                        .pay-content {
-                            display: flex;
-                            flex-direction: column;
-                        }
-                        .pay-title {
-                            display: block;
-                            font-size: 0.85rem;
-                            font-weight: 700;
-                            color: #fff;
-                            font-family: 'Orbitron', sans-serif;
-                            margin-bottom: 2px;
-                        }
-                        .pay-sub {
-                            font-size: 0.65rem;
-                            color: rgba(255, 255, 255, 0.4);
-                            font-weight: 500;
-                        }
-                        .pay-status-dot {
-                            position: absolute;
-                            top: 12px;
-                            right: 12px;
-                            width: 8px;
-                            height: 8px;
-                            border-radius: 50%;
-                            background: rgba(255, 255, 255, 0.1);
-                            transition: all 0.3s;
-                        }
-                        /* Hover State */
-                        .payment-card:hover .pay-inner {
-                            background: rgba(255, 255, 255, 0.06);
-                            border-color: rgba(255, 255, 255, 0.2);
-                            transform: translateY(-3px);
-                        }
-                        /* Selected State */
-                        .pay-inner.selected {
-                            background: rgba(212, 175, 55, 0.08);
-                            border-color: var(--magic-2);
-                            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.15), inset 0 0 20px rgba(212, 175, 55, 0.05);
-                        }
-                        .pay-inner.selected::before {
-                            opacity: 1;
-                        }
-                        .pay-inner.selected .pay-icon-wrap {
-                            background: var(--magic-2);
-                            color: #000;
-                            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
-                        }
-                        .pay-inner.selected .pay-title {
-                            color: var(--magic-2);
-                        }
-                        .pay-inner.selected .pay-sub {
-                            color: rgba(212, 175, 55, 0.6);
-                        }
-                        .pay-inner.selected .pay-status-dot {
-                            background: var(--magic-2);
-                            box-shadow: 0 0 10px var(--magic-2);
-                        }
-                    </style>
-                    <script>
-                        function updatePaySelection(el) {
-                            document.querySelectorAll('.pay-inner').forEach(b => b.classList.remove('selected'));
-                            el.classList.add('selected');
-                        }
-                    </script>
+                        <div class="booking-form-row">
+                            <div class="booking-form-group full">
+                                <label
+                                    style="font-family: 'Orbitron', sans-serif; letter-spacing: 1px; color: var(--magic-2);">Select
+                                    Payment Strategy</label>
+                                <div class="premium-payment-grid">
+                                    <label class="payment-card">
+                                        <input type="radio" name="payment" value="GPay" style="display:none;"
+                                            id="pay-gpay">
+                                        <div class="pay-inner"
+                                            onclick="document.getElementById('pay-gpay').checked=true; updatePaySelection(this)">
+                                            <div class="pay-status-dot"></div>
+                                            <div class="pay-icon-wrap">
+                                                <!-- Official GPay/UPI Look -->
+                                                <div style="display: flex; align-items: center; gap: 4px;">
+                                                    <svg viewBox="0 0 40 40" width="24" height="24">
+                                                        <path d="M19.5 20l5-5 5 5-5 5-5-5z" fill="#4285F4" />
+                                                        <path d="M14.5 15l5 5-5 5-5-5 5-5z" fill="#34A853" />
+                                                        <path d="M19.5 10l5 5-5 5-5-5 5-5z" fill="#FBBC05" />
+                                                        <path d="M24.5 15l5 5-5 5-5-5 5-5z" fill="#EA4335" />
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            <div class="pay-content">
+                                                <span class="pay-title">GPay / UPI</span>
+                                                <span class="pay-sub">Digital Payment</span>
+                                            </div>
+                                        </div>
+                                    </label>
+                                    <label class="payment-card">
+                                        <input type="radio" name="payment" value="Cash on Delivery"
+                                            style="display:none;" id="pay-cod">
+                                        <div class="pay-inner"
+                                            onclick="document.getElementById('pay-cod').checked=true; updatePaySelection(this)">
+                                            <div class="pay-status-dot"></div>
+                                            <div class="pay-icon-wrap">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="1.5">
+                                                    <rect x="2" y="6" width="20" height="12" rx="2" />
+                                                    <circle cx="12" cy="12" r="3" />
+                                                    <path d="M18 12h.01M6 12h.01" />
+                                                </svg>
+                                            </div>
+                                            <div class="pay-content">
+                                                <span class="pay-title">Cash</span>
+                                                <span class="pay-sub">Pay at Spot</span>
+                                            </div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
 
-                    <button type="submit" id="confirmBookingBtn" class="booking-submit-btn">
-                        Confirm Booking
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="5" y1="12" x2="19" y2="12" />
-                            <polyline points="12 5 19 12 12 19" />
-                        </svg>
-                    </button>
+                        <style>
+                            .premium-payment-grid {
+                                display: grid;
+                                grid-template-columns: 1fr 1fr;
+                                gap: 15px;
+                                margin-top: 15px;
+                            }
+
+                            .payment-card {
+                                display: block;
+                                cursor: pointer;
+                                perspective: 1000px;
+                            }
+
+                            .pay-inner {
+                                background: rgba(255, 255, 255, 0.03);
+                                border: 1px solid rgba(255, 255, 255, 0.08);
+                                border-radius: 16px;
+                                padding: 20px 15px;
+                                display: flex;
+                                align-items: center;
+                                gap: 12px;
+                                position: relative;
+                                transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                                overflow: hidden;
+                            }
+
+                            .pay-inner::before {
+                                content: '';
+                                position: absolute;
+                                inset: 0;
+                                background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), transparent);
+                                opacity: 0;
+                                transition: opacity 0.3s;
+                            }
+
+                            .pay-icon-wrap {
+                                width: 42px;
+                                height: 42px;
+                                background: rgba(255, 255, 255, 0.05);
+                                border-radius: 10px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                color: rgba(255, 255, 255, 0.7);
+                                transition: all 0.3s;
+                            }
+
+                            .pay-icon-wrap svg {
+                                width: 24px;
+                                height: 24px;
+                            }
+
+                            .pay-content {
+                                display: flex;
+                                flex-direction: column;
+                            }
+
+                            .pay-title {
+                                display: block;
+                                font-size: 0.85rem;
+                                font-weight: 700;
+                                color: #fff;
+                                font-family: 'Orbitron', sans-serif;
+                                margin-bottom: 2px;
+                            }
+
+                            .pay-sub {
+                                font-size: 0.65rem;
+                                color: rgba(255, 255, 255, 0.4);
+                                font-weight: 500;
+                            }
+
+                            .pay-status-dot {
+                                position: absolute;
+                                top: 12px;
+                                right: 12px;
+                                width: 8px;
+                                height: 8px;
+                                border-radius: 50%;
+                                background: rgba(255, 255, 255, 0.1);
+                                transition: all 0.3s;
+                            }
+
+                            /* Hover State */
+                            .payment-card:hover .pay-inner {
+                                background: rgba(255, 255, 255, 0.06);
+                                border-color: rgba(255, 255, 255, 0.2);
+                                transform: translateY(-3px);
+                            }
+
+                            /* Selected State */
+                            .pay-inner.selected {
+                                background: rgba(212, 175, 55, 0.08);
+                                border-color: var(--magic-2);
+                                box-shadow: 0 10px 30px rgba(212, 175, 55, 0.15), inset 0 0 20px rgba(212, 175, 55, 0.05);
+                            }
+
+                            .pay-inner.selected::before {
+                                opacity: 1;
+                            }
+
+                            .pay-inner.selected .pay-icon-wrap {
+                                background: var(--magic-2);
+                                color: #000;
+                                box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+                            }
+
+                            .pay-inner.selected .pay-title {
+                                color: var(--magic-2);
+                            }
+
+                            .pay-inner.selected .pay-sub {
+                                color: rgba(212, 175, 55, 0.6);
+                            }
+
+                            .pay-inner.selected .pay-status-dot {
+                                background: var(--magic-2);
+                                box-shadow: 0 0 10px var(--magic-2);
+                            }
+                        </style>
+                        <script>
+                            function updatePaySelection(el) {
+                                document.querySelectorAll('.pay-inner').forEach(b => b.classList.remove('selected'));
+                                el.classList.add('selected');
+                            }
+                        </script>
+
+                        <button type="submit" id="confirmBookingBtn" class="booking-submit-btn">
+                            Confirm Booking
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12" />
+                                <polyline points="12 5 19 12 12 19" />
+                            </svg>
+                        </button>
                 </form>
             </div>
 
@@ -5176,7 +5222,9 @@
             <!-- STEP 1: Processing (Visible during fetch) -->
             <div id="pmStep1">
                 <div style="text-align: center; padding: 40px 0;">
-                    <div style="width: 50px; height: 50px; border: 3px solid var(--magic-2); border-top-color: transparent; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 20px;"></div>
+                    <div
+                        style="width: 50px; height: 50px; border: 3px solid var(--magic-2); border-top-color: transparent; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 20px;">
+                    </div>
                     <h3 class="pm-title">Securing Your Slot</h3>
                     <p class="pm-desc">We are adding your booking to the calendar...</p>
                 </div>
@@ -6008,7 +6056,7 @@
         if (bookingForm) {
             bookingForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
-                
+
                 const paymentRadio = document.querySelector('input[name="payment"]:checked');
                 if (!paymentRadio) {
                     alert('Please select a payment method before confirming.');
@@ -6017,7 +6065,7 @@
 
                 const name = document.getElementById('bf-name').value.trim();
                 const datetime = document.getElementById('bf-datetime').value;
-                
+
                 const payload = {
                     name: name,
                     phone: document.getElementById('bf-phone')?.value.trim() || "",
@@ -6036,11 +6084,11 @@
                     // ── IMPORTANT: DO NOT USE THE CALENDAR EMBED URL HERE ──
                     // The URL you provided (calendar.google.com) is only for VIEWING.
                     // For STORING, you must paste the "Web App URL" from your Google Apps Script deployment below:
-                    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyoqarO5yHWBt9-vj-sIK7Z6pVREq5SCLdK3RE87gS-x6hH9kwEIhSX3sLjiqSuFrto/exec'; 
+                    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyoqarO5yHWBt9-vj-sIK7Z6pVREq5SCLdK3RE87gS-x6hH9kwEIhSX3sLjiqSuFrto/exec';
 
                     await fetch(SCRIPT_URL, {
                         method: 'POST',
-                        mode: 'no-cors', 
+                        mode: 'no-cors',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(payload)
                     });
@@ -6050,13 +6098,13 @@
                     pmDot2.classList.add('active');
                     pmStep1.style.display = 'none';
                     pmStep2.style.display = 'block';
-                    
+
                     const payLabel = document.getElementById('pmPaymentLabel');
                     if (payLabel) payLabel.textContent = payload.paymentMethod;
-                    
+
                     bookingForm.reset();
                     document.querySelectorAll('.pay-inner').forEach(b => b.classList.remove('selected'));
-                    
+
                 } catch (err) {
                     console.error('Booking Error:', err);
                     alert('Booking failed. Please check your connection and try again.');
