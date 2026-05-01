@@ -1643,6 +1643,7 @@
         }
 
         @media (max-width: 1024px) {
+
             .painting-left,
             .painting-right {
                 margin-top: 0;
@@ -4811,46 +4812,24 @@
     <!-- ─── TESTIMONIALS ─── -->
     <section class="testimonials-section" id="testimonials">
         <h2 class="section-title">Client <span>Experiences</span></h2>
-        <div class="testimonials-grid" id="testimonialGrid">
-            <!-- Testimonial 1 -->
-            <div class="testimonial-card">
-                <div class="testimonial-content">
-                    <div class="stars">★★★★★</div>
-                    <p class="review-text">"Absolutely blown away by the PPF work on my Porsche 911. The attention to
-                        detail is
-                        unmatched, and the team was incredibly professional."</p>
-                    <div class="client-info">
-                        <span class="client-name">Raghav M.</span>
-                        <span class="client-car">Porsche 911 GT3</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Testimonial 2 -->
-            <div class="testimonial-card">
-                <div class="testimonial-content">
-                    <div class="stars">★★★★★</div>
-                    <p class="review-text">"Their ceramic coating made my Range Rover look better than the day I bought
-                        it. The
-                        hydrophobic effect is insane!"</p>
-                    <div class="client-info">
-                        <span class="client-name">Anita S.</span>
-                        <span class="client-car">Range Rover Autobiography</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Testimonial 3 -->
-            <div class="testimonial-card">
-                <div class="testimonial-content">
-                    <div class="stars">★★★★★</div>
-                    <p class="review-text">"The best detailing studio in the city, hands down. My Ferrari 488 looks
-                        flawless
-                        under every light. Truly premium service."</p>
-                    <div class="client-info">
-                        <span class="client-name">Vikram K.</span>
-                        <span class="client-car">Ferrari 488 Spider</span>
-                    </div>
+        
+        <!-- Premium Review Widget Container -->
+        <div class="reviews-widget-wrap" style="max-width: 1200px; margin: 0 auto; padding: 20px;">
+            <p style="text-align: center; color: rgba(255,255,255,0.5); font-size: 0.9rem; margin-bottom: 20px;">
+                Verified Google Business Reviews — Synced Automatically
+            </p>
+            
+            <!-- 
+              INSTRUCTIONS FOR USER:
+              1. Go to Elfsight.com or Trustindex.io
+              2. Create a "Google Reviews Widget"
+              3. Copy the script code they give you
+              4. Paste it right below this comment:
+            -->
+            <div id="google-reviews-placeholder">
+                <!-- PASTE YOUR WIDGET CODE HERE -->
+                <div style="text-align: center; padding: 40px; background: rgba(255,255,255,0.02); border: 1px dashed rgba(212, 175, 55, 0.3); border-radius: 20px;">
+                    <span style="color: var(--magic-2); font-family: 'Orbitron', sans-serif;">Waiting for Review Widget Sync...</span>
                 </div>
             </div>
         </div>
@@ -4997,14 +4976,170 @@
                             <label for="bf-datetime">Preferred Date & Time</label>
                             <input type="datetime-local" id="bf-datetime" required />
                         </div>
-                    </div>
-
                     <div class="booking-form-row">
                         <div class="booking-form-group full">
                             <label for="bf-notes">Location / Notes</label>
                             <textarea id="bf-notes" placeholder="Your address or any special instructions…"></textarea>
                         </div>
                     </div>
+
+                    <div class="booking-form-row">
+                        <div class="booking-form-group full">
+                            <label style="font-family: 'Orbitron', sans-serif; letter-spacing: 1px; color: var(--magic-2);">Select Payment Strategy</label>
+                            <div class="premium-payment-grid">
+                                <label class="payment-card">
+                                    <input type="radio" name="payment" value="GPay" style="display:none;" id="pay-gpay">
+                                    <div class="pay-inner" onclick="document.getElementById('pay-gpay').checked=true; updatePaySelection(this)">
+                                        <div class="pay-status-dot"></div>
+                                        <div class="pay-icon-wrap">
+                                            <!-- Official GPay/UPI Look -->
+                                            <div style="display: flex; align-items: center; gap: 4px;">
+                                                <svg viewBox="0 0 40 40" width="24" height="24">
+                                                    <path d="M19.5 20l5-5 5 5-5 5-5-5z" fill="#4285F4"/>
+                                                    <path d="M14.5 15l5 5-5 5-5-5 5-5z" fill="#34A853"/>
+                                                    <path d="M19.5 10l5 5-5 5-5-5 5-5z" fill="#FBBC05"/>
+                                                    <path d="M24.5 15l5 5-5 5-5-5 5-5z" fill="#EA4335"/>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <div class="pay-content">
+                                            <span class="pay-title">GPay / UPI</span>
+                                            <span class="pay-sub">Digital Payment</span>
+                                        </div>
+                                    </div>
+                                </label>
+                                <label class="payment-card">
+                                    <input type="radio" name="payment" value="Cash on Delivery" style="display:none;" id="pay-cod">
+                                    <div class="pay-inner" onclick="document.getElementById('pay-cod').checked=true; updatePaySelection(this)">
+                                        <div class="pay-status-dot"></div>
+                                        <div class="pay-icon-wrap">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                                <rect x="2" y="6" width="20" height="12" rx="2"/>
+                                                <circle cx="12" cy="12" r="3"/>
+                                                <path d="M18 12h.01M6 12h.01"/>
+                                            </svg>
+                                        </div>
+                                        <div class="pay-content">
+                                            <span class="pay-title">Cash</span>
+                                            <span class="pay-sub">Pay at Spot</span>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <style>
+                        .premium-payment-grid {
+                            display: grid;
+                            grid-template-columns: 1fr 1fr;
+                            gap: 15px;
+                            margin-top: 15px;
+                        }
+                        .payment-card {
+                            display: block;
+                            cursor: pointer;
+                            perspective: 1000px;
+                        }
+                        .pay-inner {
+                            background: rgba(255, 255, 255, 0.03);
+                            border: 1px solid rgba(255, 255, 255, 0.08);
+                            border-radius: 16px;
+                            padding: 20px 15px;
+                            display: flex;
+                            align-items: center;
+                            gap: 12px;
+                            position: relative;
+                            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                            overflow: hidden;
+                        }
+                        .pay-inner::before {
+                            content: '';
+                            position: absolute;
+                            inset: 0;
+                            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), transparent);
+                            opacity: 0;
+                            transition: opacity 0.3s;
+                        }
+                        .pay-icon-wrap {
+                            width: 42px;
+                            height: 42px;
+                            background: rgba(255, 255, 255, 0.05);
+                            border-radius: 10px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            color: rgba(255, 255, 255, 0.7);
+                            transition: all 0.3s;
+                        }
+                        .pay-icon-wrap svg {
+                            width: 24px;
+                            height: 24px;
+                        }
+                        .pay-content {
+                            display: flex;
+                            flex-direction: column;
+                        }
+                        .pay-title {
+                            display: block;
+                            font-size: 0.85rem;
+                            font-weight: 700;
+                            color: #fff;
+                            font-family: 'Orbitron', sans-serif;
+                            margin-bottom: 2px;
+                        }
+                        .pay-sub {
+                            font-size: 0.65rem;
+                            color: rgba(255, 255, 255, 0.4);
+                            font-weight: 500;
+                        }
+                        .pay-status-dot {
+                            position: absolute;
+                            top: 12px;
+                            right: 12px;
+                            width: 8px;
+                            height: 8px;
+                            border-radius: 50%;
+                            background: rgba(255, 255, 255, 0.1);
+                            transition: all 0.3s;
+                        }
+                        /* Hover State */
+                        .payment-card:hover .pay-inner {
+                            background: rgba(255, 255, 255, 0.06);
+                            border-color: rgba(255, 255, 255, 0.2);
+                            transform: translateY(-3px);
+                        }
+                        /* Selected State */
+                        .pay-inner.selected {
+                            background: rgba(212, 175, 55, 0.08);
+                            border-color: var(--magic-2);
+                            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.15), inset 0 0 20px rgba(212, 175, 55, 0.05);
+                        }
+                        .pay-inner.selected::before {
+                            opacity: 1;
+                        }
+                        .pay-inner.selected .pay-icon-wrap {
+                            background: var(--magic-2);
+                            color: #000;
+                            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+                        }
+                        .pay-inner.selected .pay-title {
+                            color: var(--magic-2);
+                        }
+                        .pay-inner.selected .pay-sub {
+                            color: rgba(212, 175, 55, 0.6);
+                        }
+                        .pay-inner.selected .pay-status-dot {
+                            background: var(--magic-2);
+                            box-shadow: 0 0 10px var(--magic-2);
+                        }
+                    </style>
+                    <script>
+                        function updatePaySelection(el) {
+                            document.querySelectorAll('.pay-inner').forEach(b => b.classList.remove('selected'));
+                            el.classList.add('selected');
+                        }
+                    </script>
 
                     <button type="submit" id="confirmBookingBtn" class="booking-submit-btn">
                         Confirm Booking
@@ -5038,37 +5173,13 @@
                 <div class="pm-step-dot" id="pmDot2"></div>
             </div>
 
-            <!-- STEP 1: Payment Selection -->
+            <!-- STEP 1: Processing (Visible during fetch) -->
             <div id="pmStep1">
-                <h3 class="pm-title">Select Payment</h3>
-                <p class="pm-desc">Choose how you'd like to pay for your service.</p>
-
-                <div class="pm-options">
-                    <!-- GPay -->
-                    <button class="pm-option-btn" id="pmBtnGpay" data-payment="GPay">
-                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="2" y="5" width="20" height="14" rx="2" />
-                            <path d="M12 10v4M10 12h4" />
-                        </svg>
-                        Pay with GPay
-                    </button>
-                    <!-- COD -->
-                    <button class="pm-option-btn" id="pmBtnCod" data-payment="Cash on Delivery">
-                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-                        </svg>
-                        Cash on Delivery
-                    </button>
+                <div style="text-align: center; padding: 40px 0;">
+                    <div style="width: 50px; height: 50px; border: 3px solid var(--magic-2); border-top-color: transparent; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 20px;"></div>
+                    <h3 class="pm-title">Securing Your Slot</h3>
+                    <p class="pm-desc">We are adding your booking to the calendar...</p>
                 </div>
-
-                <!-- Confirm button (disabled until selection) -->
-                <button class="pm-confirm-btn" id="pmConfirmBtn" disabled>Confirm Booking</button>
-                <button class="pm-back-btn" id="pmBackBtn">&#8592; Back to Form</button>
-
-                <!-- Inline error msg -->
-                <div class="pm-status" id="pmStatus"></div>
             </div>
 
             <!-- STEP 2: Success State -->
@@ -5862,152 +5973,94 @@
         });
         // ══════════════════════════════════════════════════════
         // ── BOOKING FORM & PAYMENT MODAL LOGIC ──
-        // Flow: Form Submit → Payment Modal → Confirm → API → Success
+        // Flow: Form Submit → Sync to Calendar → Show Success
         // ══════════════════════════════════════════════════════
         const bookingForm = document.getElementById('bookingForm');
         const paymentModal = document.getElementById('paymentModal');
         const pmClose = document.getElementById('pmClose');
-        const pmBackBtn = document.getElementById('pmBackBtn');
-        const pmConfirmBtn = document.getElementById('pmConfirmBtn');
         const pmStep1 = document.getElementById('pmStep1');
         const pmStep2 = document.getElementById('pmStep2');
         const pmDot1 = document.getElementById('pmDot1');
         const pmDot2 = document.getElementById('pmDot2');
-        const pmStatus = document.getElementById('pmStatus');
-        const pmOptionBtns = document.querySelectorAll('.pm-option-btn');
 
-        let pendingBookingData = null;
-        let selectedPaymentMethod = null;
-
-        /* ─── Helpers ─── */
         function openPaymentModal() {
-            selectedPaymentMethod = null;
-            pmOptionBtns.forEach(b => b.classList.remove('selected'));
-            pmConfirmBtn.disabled = true;
-            pmConfirmBtn.classList.remove('ready');
-            pmConfirmBtn.innerHTML = 'Confirm Booking';
-            pmConfirmBtn.style.background = '';
             pmStep1.style.display = 'block';
             pmStep2.style.display = 'none';
-            pmStatus.className = 'pm-status';
-            pmStatus.textContent = '';
             pmDot1.classList.add('active');
             pmDot2.classList.remove('active');
             paymentModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
 
         function closePaymentModal() {
             paymentModal.classList.remove('active');
+            document.body.style.overflow = '';
         }
 
-        function showPaymentError(msg) {
-            pmStatus.textContent = '⚠ ' + msg;
-            pmStatus.className = 'pm-status show';
-            pmConfirmBtn.disabled = false;
-            pmConfirmBtn.classList.add('ready');
-            pmConfirmBtn.innerHTML = 'Retry';
-            pmConfirmBtn.style.background = '';
-        }
-
-        /* ─── Form Submit → Open Payment Modal ─── */
-        if (bookingForm) {
-            bookingForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const name = document.getElementById('bf-name').value.trim();
-                const datetime = document.getElementById('bf-datetime').value;
-                if (!name) { document.getElementById('bf-name').focus(); return; }
-                if (!datetime) { document.getElementById('bf-datetime').focus(); return; }
-
-                pendingBookingData = {
-                    name,
-                    phone: document.getElementById('bf-phone').value.trim(),
-                    email: document.getElementById('bf-email').value.trim(),
-                    datetime,
-                    vehicle: document.getElementById('bf-vehicle').value.trim(),
-                    service: document.getElementById('bf-package').value,
-                    notes: document.getElementById('bf-notes').value.trim()
-                };
-                openPaymentModal();
-            });
-        }
-
-        /* ─── Payment Option Click ─── */
-        pmOptionBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                pmOptionBtns.forEach(b => b.classList.remove('selected'));
-                btn.classList.add('selected');
-                selectedPaymentMethod = btn.dataset.payment;
-                pmConfirmBtn.disabled = false;
-                pmConfirmBtn.classList.add('ready');
-                pmStatus.className = 'pm-status';
-            });
-        });
-
-        /* ─── Close / Back ─── */
         if (pmClose) pmClose.addEventListener('click', closePaymentModal);
-        if (pmBackBtn) pmBackBtn.addEventListener('click', closePaymentModal);
         if (paymentModal) {
             paymentModal.addEventListener('click', e => {
                 if (e.target === paymentModal) closePaymentModal();
             });
         }
 
-        /* ─── Confirm Booking → Call API → Show Success ─── */
-        if (pmConfirmBtn) {
-            pmConfirmBtn.addEventListener('click', async () => {
-                if (!selectedPaymentMethod || !pendingBookingData) return;
+        /* ─── Form Submit → Sync to Calendar ─── */
+        if (bookingForm) {
+            bookingForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const paymentRadio = document.querySelector('input[name="payment"]:checked');
+                if (!paymentRadio) {
+                    alert('Please select a payment method before confirming.');
+                    return;
+                }
 
-                pmConfirmBtn.disabled = true;
-                pmConfirmBtn.classList.remove('ready');
-                pmConfirmBtn.innerHTML = '<span style="display:inline-flex;align-items:center;gap:8px"><span style="width:14px;height:14px;border:2px solid #000;border-top-color:transparent;border-radius:50%;animation:spin 0.8s linear infinite;display:inline-block"></span>Processing…</span>';
+                const name = document.getElementById('bf-name').value.trim();
+                const datetime = document.getElementById('bf-datetime').value;
+                
+                const payload = {
+                    name: name,
+                    phone: document.getElementById('bf-phone')?.value.trim() || "",
+                    email: document.getElementById('bf-email')?.value.trim() || "",
+                    datetime: datetime,
+                    vehicle: document.getElementById('bf-vehicle')?.value.trim() || "",
+                    service: document.getElementById('bf-package')?.value || "",
+                    notes: document.getElementById('bf-notes')?.value.trim() || "",
+                    paymentMethod: paymentRadio.value
+                };
 
-                const payload = { ...pendingBookingData, paymentMethod: selectedPaymentMethod };
+                // Open modal in "Processing" state
+                openPaymentModal();
 
                 try {
-                    const response = await fetch('http://localhost:3000/book', {
+                    // ── IMPORTANT: DO NOT USE THE CALENDAR EMBED URL HERE ──
+                    // The URL you provided (calendar.google.com) is only for VIEWING.
+                    // For STORING, you must paste the "Web App URL" from your Google Apps Script deployment below:
+                    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyoqarO5yHWBt9-vj-sIK7Z6pVREq5SCLdK3RE87gS-x6hH9kwEIhSX3sLjiqSuFrto/exec'; 
+
+                    await fetch(SCRIPT_URL, {
                         method: 'POST',
+                        mode: 'no-cors', 
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(payload)
                     });
-                    const result = await response.json();
 
-                    if (response.ok) {
-                        // ── SUCCESS ──
-                        pmDot1.classList.remove('active');
-                        pmDot2.classList.add('active');
-                        pmStep1.style.display = 'none';
-                        pmStep2.style.display = 'block';
-                        document.getElementById('pmPaymentLabel').textContent = selectedPaymentMethod;
-                        bookingForm.reset();
-                        pendingBookingData = null;
-                        // Auto-close after 5 s
-                        setTimeout(() => {
-                            closePaymentModal();
-                            setTimeout(() => {
-                                pmDot1.classList.add('active');
-                                pmDot2.classList.remove('active');
-                                pmStep1.style.display = 'block';
-                                pmStep2.style.display = 'none';
-                            }, 500);
-                        }, 5000);
-                    } else {
-                        const errMsg = result.error || result.message || 'Server Error';
-                        showPaymentError(errMsg);
-                    }
+                    // Success UI
+                    pmDot1.classList.remove('active');
+                    pmDot2.classList.add('active');
+                    pmStep1.style.display = 'none';
+                    pmStep2.style.display = 'block';
+                    
+                    const payLabel = document.getElementById('pmPaymentLabel');
+                    if (payLabel) payLabel.textContent = payload.paymentMethod;
+                    
+                    bookingForm.reset();
+                    document.querySelectorAll('.pay-inner').forEach(b => b.classList.remove('selected'));
+                    
                 } catch (err) {
                     console.error('Booking Error:', err);
-                    const isFetch = err.message === 'Failed to fetch';
-                    const msg = isFetch
-                        ? 'Server not reachable. Check your connection and try again.'
-                        : 'Booking failed. Calendar event could not be created. We will contact you shortly.';
-                    // Mark calendar badge as failed if it was a calendar API issue
-                    const calBadge = document.getElementById('pmCalendarBadge');
-                    const calLabel = document.getElementById('pmCalendarLabel');
-                    if (!isFetch && calBadge && calLabel) {
-                        calBadge.classList.add('error');
-                        calLabel.textContent = 'Calendar event creation failed';
-                    }
-                    showPaymentError(msg);
+                    alert('Booking failed. Please check your connection and try again.');
+                    closePaymentModal();
                 }
             });
         }
@@ -6548,7 +6601,7 @@
                 if (diffX < 10 && diffY < 10) {
                     // Ignore if clicking internal links/buttons
                     if (e.target.closest('a') || e.target.closest('button')) return;
-                    
+
                     e.preventDefault(); // Prevent ghost click
                     card.classList.toggle('flipped');
                 }
